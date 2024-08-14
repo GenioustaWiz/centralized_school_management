@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth %}
+
+{% block head %}
+<title>
+    {% trans "Verify Your Email Address" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  .wrapper{
+    justify-content: center;
+    display: flex !important;
+  }
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container">
+        <h1 class="brand">
+            {% element span %}
+             {% trans "Verify Your Email Address" %}
+            {% endelement %}
+        </h1>
+        <div class="wrapper animated bounceInLeft ">
+            <div>
+                <div class="form-info">
+                    <div class="form">
+                        {% url 'account_email' as email_url %}
+                        <p>
+                            {% blocktrans %}This part of the site requires us to verify that
+                    you are who you claim to be. For this purpose, we require that you
+                    verify ownership of your email address. {% endblocktrans %}
+                        </p>
+                        <p>
+                            {% blocktrans %}We have sent an email to you for
+                    verification. Please click on the link inside that email. If you do not see the verification email in your main inbox, check your spam folder. Otherwise
+                    contact us if you do not receive it within a few minutes.{% endblocktrans %}
+                        </p>
+                        <p>
+                            {% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your email address</a>.{% endblocktrans %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

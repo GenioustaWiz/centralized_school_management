@@ -1,0 +1,262 @@
+ 
+/* @import url("theme.css"); */
+/*
+static/
+│
+├── css/
+│   ├── maindashboard/
+│   │   ├── home/
+│   │   │   └── home.css
+│   ├── theme.css
+│
+└── ... 
+*/
+
+ 
+ /* Navigation header */
+ .header{
+  position: fixed;
+  padding: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height) ;
+  /* background: linear-gradient(to right, #2d80c5 0%, #83ddca 100%); */
+  background-color: var(--primary-color) ;
+  color: white;
+  display: grid; /* IDEA: so that we can fit other stuff in the header. e.g logo */
+  /* grid-template-columns: repeat(12, 1fr); */
+  grid-template-columns: auto 2fr auto;
+  gap: 12px;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1000;
+}
+.header__button{
+  /* grid-column: 1 ; */
+  width: var(--header-height);
+  flex-shrink: 0; /* IDEA: Making sure it will never be shrinked down by elements from the right */
+  background: none;
+  outline: none;
+  border: none;
+  color: rgb(202, 178, 178);
+  cursor: pointer;
+}
+.header__button img{
+  height: 17px;
+  width: 17px;
+}
+.header__button i{
+  font-size: 30px !important;
+  color: var(--accent-color);
+}
+#logo{
+  /* grid-column: 6; */
+  margin: 0 auto;
+  font-family: "Open Sans" sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#logo a{
+  text-decoration: none;
+}
+.logo span{
+  color: #0474bc
+}
+#navbar_d{
+  display: flex;
+  justify-content: flex-end;
+}
+.dashboard .dropdown-menu{
+  /* background: linear-gradient(to right, #2d80c5 0%, #83ddca 100%);*/
+  background-color: var(--primary-color) ; 
+}
+.dashboard .dropdown-menu a{
+  color: white !important;
+}
+.dashboard .dropdown-menu li:hover > a {
+  color: var(--accent-color-hover) !important;
+  background-color: var(--primary-color) !important;
+}
+.user{
+  /* grid-column: 9; */
+  /* padding-right: 10px; */
+  display: flex;
+  align-items: center;
+}
+.user a.dropdown-toggle{
+  color: var(--accent-color) !important;
+}
+.user a{
+  color: var(--accent-color) !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+.user .dropdown-menu h4{
+  color: var(--accent-color) !important;
+  font-weight: 700;
+}
+.user .dropdown-menu h4:hover{
+  background-color: var(--primary-color) !important;
+}
+.user a:hover{
+  color: var(--accent-color-hover) !important;
+  background-color: var(--primary-color) !important;
+}
+.user .dropdown-menu a i{
+  width: 24px;
+}
+.nav__links{
+  position: fixed;
+  top:50px;
+  left:0;
+  z-index: 10005;
+  height: fit-content;
+  min-width: 200px;
+  transform: translate(-250px); /* IDEA: To push navbar off the page by default */
+  transition: transform 0.3s;
+  height: 95%;
+  /* background: linear-gradient(to right, #2d80c5 0%, #83ddca 100%); */
+  background-color: var(--primary-color) ;
+}
+/* IDEA: For Opening the Navbar */
+.nav--open .nav__links{
+  transform: translate(0);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2 );
+}
+.nav__link{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px !important;
+  text-decoration: none;
+  padding: 12px 15px;
+  transition: transform 0.3s;
+  color:var(--accent-color);
+  margin: 10px 2px;
+}
+/* IDEA: Putting spae btwn icons and text */
+.nav__link > i{
+  margin-right: 15px;
+  color:var(--icon-bg-color);
+  height: 20px;
+  width: 20px;
+}
+/* .nav__link--active{
+  color: #0062f3;
+
+} */
+.nav__link:hover{
+  color:var(--accent-color-hover);
+}
+.nav__link:hover i{
+  color:var(--icon-bg-color-hover);
+}
+.nav__overlay{
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.nav--open .nav__overlay{
+  visibility: visible;
+  opacity: 1;
+}
+.footer{
+  color: #e9ebee;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* background: linear-gradient(to right, #83ddca 0%, #2d80c5 100%); */
+  background-color: var(--primary-color) ;
+  z-index: 10;
+}
+
+/* IDEA: Mobile to Tablet */
+@media (min-width: 320px) and (max-width: 720px){
+  #navbar_d{
+   display: none;
+ }
+ #logo{
+    /* height: 10px; */
+    margin: 0;
+ }
+ #logo a span img{
+  width: 140px;
+  height: 30px;
+ }
+ .user{
+  display: none;
+ }
+}
+
+@media (min-width: 720px){
+  .header__button, .nav__links{
+    display: none;
+  }
+  .header{
+    display: grid;
+    grid-template-columns: auto 2fr auto auto;
+    gap: 12px;
+    justify-content: start;
+    align-items: center;
+    min-height: var(--header-height);
+    z-index: 1000;
+    grid-gap: 1em;
+    padding: 0 10px;
+    -webkit-box-shadow: -1px 4px 5px 0px var(--accent-color);
+    -moz-box-shadow: -1px 4px 5px 0px var(--accent-color);
+    box-shadow: -1px 4px 5px 0px var(--accent-color);
+  }
+  .user{
+    display: inline-flex;
+    justify-content: right;
+  }
+  #logo{
+    display:grid;
+    margin-top:10;
+    font-family: "Open Sans" sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+  }
+  .logo span{
+    color: #0474bc
+  }
+  #links{
+    display:grid;
+    padding-right: 20px;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-gap: 1em;
+    width: fit-content;
+    font-size: 18px !important;
+    font-weight: 700;
+    
+  }
+  #links a{
+    color: var(--accent-color);
+    font-size: 18px !important;
+    font-weight: 500;
+    text-decoration:  none;
+  }
+  #links a:hover{
+    color: var(--accent-color-hover);
+    font-family: "Open Sans" sans-serif;
+    font-size: 18px;
+  }
+
+}

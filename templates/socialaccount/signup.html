@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n allauth account %}
+
+{% block head %}
+<title>
+    {% trans "Signup" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container">
+        <h1 class="brand">
+          {% element span %}
+          {% trans "Signup" %}
+          {% endelement %}
+        </h1>
+        <p>
+            {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
+            {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}
+        </p>
+        <div class="wrapper animated bounceInLeft ">
+            <div>
+                <div class="form-info">
+                    <div class="form">
+                        {% url 'socialaccount_signup' as action_url %}
+                        {% element form form=form method="post" action=action_url %}
+                            {% slot body %}
+                                {% csrf_token %}
+                                {% element fields form=form unlabeled=True %}
+                                {% endelement %}
+                                {% if redirect_field_value %}
+                                    <input type="hidden"
+                                        name="{{ redirect_field_name }}"
+                                        value="{{ redirect_field_value }}" />
+                                {% endif %}
+                            {% endslot %}
+                            {% slot actions %}
+                                {% element button type="submit" %}
+                                    {% trans "Sign Up" %}
+                                {% endelement %}
+                            {% endslot %}
+                        {% endelement %}  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

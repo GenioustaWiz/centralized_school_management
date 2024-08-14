@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n allauth account %}
+
+{% block head %}
+<title>
+    {% trans "Account Connections" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container">
+        <h1 class="brand">
+          {% element span %}
+            {% trans "Account Connections" %}
+          {% endelement %}
+        </h1>
+        <div class="wrapper animated bounceInLeft ">
+          
+            <div>
+                <div class="form-info">
+                    <div class="form">
+                        {% if form.accounts %}
+                        <p>
+                            {% blocktrans %}You can sign in to your account using any of the following third-party accounts:{% endblocktrans %}
+                        </p>
+                        {% url 'socialaccount_connections' as action_url %}
+                        {% element form form=form method="post" action=action_url %}
+                            {% slot body %}
+                                {% csrf_token %}
+                                {% for acc in form.fields.account.choices %}
+                                    {% with account=acc.0.instance.get_provider_account %}
+                                        {% setvar radio_id %}
+                                            id_account_{{ account.account.pk }}
+                                        {% endsetvar %}
+                                        {% setvar tags %}
+                                            socialaccount,{{ account.account.provider }}
+                                        {% endsetvar %}
+                                        {% element field id=radio_id type="radio" name="account" value=account.account.pk %}
+                                            {% slot label %}
+                                                {{ account }}
+                                                {% element badge tags=tags %}
+                                                    {{ account.get_brand.name }}
+                                                {% endelement %}
+                                            {% endslot %}
+                                        {% endelement %}
+                                    {% endwith %}
+                                {% endfor %}
+                            {% endslot %}
+                            {% slot actions %}
+                                {% element button tags="delete,danger" type="submit" %}
+                                    {% trans 'Remove' %}
+                                {% endelement %}
+                            {% endslot %}
+                        {% endelement %}
+                        {% else %}
+                            <p>{% trans 'You currently have no social network accounts connected to this account.' %}</p>
+                        {% endif %}
+                        <h2>
+                        {% element h2 %}
+                            {% trans 'Add a Third-Party Account' %}
+                        {% endelement %}
+                        </h2>
+                        {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
+                        {% include "socialaccount/snippets/login_extra.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load allauth i18n socialaccount %}
+
+{% block head %}
+<title>
+  {% trans "Signup" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+  <div id="side-page" class="container">
+    <h1 class="brand" >
+      {% element span %}
+        {% trans "Sign Up" %}
+      {% endelement %}
+    </h1>
+    <div class="wrapper animated bounceInLeft">
+      <div class="company-info" id="bg">
+        <h3>{{side_info.name}}</h3>
+        <ul>
+          <li>
+            <i class="bi bi-telephone-fill"></i>
+            {{side_info.phone_number}}
+          </li>
+          <li>
+            <i class="bi bi-envelope-at-fill"></i>
+            {{side_info.email}}
+          </li>
+          <li>
+            <i class="bi bi-geo-alt-fill"></i>
+            {{side_info.address}}
+          </li>
+          <li> 
+            <i class="bi bi-whatsapp"></i>
+            <div class="form-group button" style="margin-top: 5px;">
+              <a href="" id='whatsapp-url' target="_blank" style="font-weight: 700;">Contact on Whatsapp</a>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+      <div style="padding-top: 0;">
+        <div class="form-info">
+          <p>
+            {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+          </p>
+          <div class="form">
+            {% url 'account_signup' as action_url %}
+            {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+                {% slot body %}
+                    {% csrf_token %}
+                    {% element fields form=form unlabeled=True %}
+                    {% endelement %}
+                    {% if redirect_field_value %}
+                        <input type="hidden"
+                              name="{{ redirect_field_name }}"
+                              value="{{ redirect_field_value }}" />
+                    {% endif %}
+                {% endslot %}
+                {% slot actions %}
+                    {% element button tags="prominent,signup" type="submit" %}
+                        {% trans "Sign Up" %}
+                    {% endelement %}
+                {% endslot %}
+            {% endelement %}
+            <hr>
+            <p class="text-center" style="font-weight: 700;">Or use a third-party</p>
+            <ul class="socialaccounts">
+              <li>
+                  <a title="GitHub" href="/accounts/github/login/?process=login">
+                      <i class="fa fa-brands fa-github"></i>
+                      <h5> GitHub </h5>
+                  </a>
+              </li>
+              <li>
+                  <a title="Google" href="/accounts/google/login/?process=login">
+                      <i class=" fa fa-brands fa-google"></i>
+                      <h5> Google </h5>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

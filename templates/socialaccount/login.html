@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n allauth account %}
+
+{% block head %}
+<title>
+    {% trans "Sign In" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container">
+        {% if process == "connect" %}
+            <h1 class="brand">
+                {% element span %}
+                    {% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}
+                {% endelement %}
+            </h1>
+            <p>
+                {% blocktrans with provider.name as provider %}You are about to connect a new third-party account from {{ provider }}.{% endblocktrans %}
+            </p>
+        {% else %}
+            <h1 class="brand">
+                {% element span %}
+                    {% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}
+                {% endelement %}
+            </h1>
+            <p>
+                {% blocktrans with provider.name as provider %}You are about to sign in using a third-party account from {{ provider }}.{% endblocktrans %}
+            </p>
+        {% endif %}
+        <div class="wrapper animated bounceInLeft ">
+            <div>
+                <div class="form-info">
+                    <div class="form">
+                        {% element form method="post" no_visible_fields=True %}
+                            {% slot actions %}
+                                {% csrf_token %}
+                                {% element button type="submit" %}
+                                    {% trans "Continue" %}
+                                {% endelement %}
+                            {% endslot %}
+                        {% endelement %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

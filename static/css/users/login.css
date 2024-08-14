@@ -1,0 +1,184 @@
+#side-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background: rgba(255, 255, 255, 0.15); */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.27);
+    max-width: 1000px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    padding-top: 0;
+    margin-bottom: 30px;
+    /* height: 89vh; */
+      }
+    .company-info  ul{
+        list-style: none;
+        padding:0;
+      }
+    
+      .brand{
+        text-align: center;
+      }
+      .brand span {
+        color: rgb(36, 22, 22);
+      }
+      .wrapper {
+
+        border-radius: 20px;
+        box-shadow: 0 0 20px 0 rgba(72,94, 116, 0.7);
+      }
+      .wrapperD {
+
+        border-radius: 20px;
+        box-shadow: 0 0 20px 0 rgba(72,94, 116, 0.7);
+      }
+      .wrapper > *{
+        padding: 1em;
+      }
+      .wrapperD > *{
+        padding: 1em;
+      }
+      /* .company-info{
+        background: #c6c9cd;
+        color: azure;
+      }
+      .company-info h3, .company-info ul{
+        text-align: center;
+        margin: 0 0 1rem 0;
+      } */
+       
+      /*IDEA:  FORM STYLES */
+      .alert{
+        padding: 0 !important;
+        margin: 0 !important;
+        text-align: center;
+      }
+      .form-infor{
+          margin-top: 0;
+      }
+       form{
+        padding: 20px;
+      }
+       form #f{
+        text-align: right;
+      }
+       form label{
+        display: block;
+      }
+       form p{
+          padding-top: 10px;
+        margin: 0 ;
+      }
+       form .full{
+        grid-column: 1/ 3
+      }
+       form button,  form input{
+        width: 100%;
+        padding: 1em;
+        border: 1px solid #c9e6ff;
+      }
+       form button{
+        background: var(--accent-color);
+        border: 0;
+        color: black;
+        text-transform: uppercase;
+        font-weight: 700;
+        padding: 2px 0 !important;
+        margin-top: 10px;
+      }
+       form button:hover,  form button:focus{
+        background: var(--accent-color-hover);
+        outline: 0;
+        transition: background-color 2s  ease-out;
+      }
+       p input{
+          height: 10px;
+      }
+      .id-remember{
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        align-items: center;
+      }
+      .buttons{
+          text-align: center;
+      }
+      .errorlist{
+        list-style: none;
+          color: red;
+          margin-bottom: 0;
+      }
+      .helptext{
+          display: none;
+        }
+      .or{
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      
+      /* SOCIAL ACCOUNTS */
+      .socialaccounts li{
+          list-style: none;
+      } 
+      .socialaccounts a{
+        display: flex;
+        text-decoration: none;
+
+      }
+      .socialaccounts{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-auto-rows: 23px;
+        grid-gap:5px;
+        justify-items: center;
+        align-items: center;
+	      grid-auto-flow: dense; /*helps rearrange Item to fit well on grid*/
+        padding: 0;
+      }
+      .socialaccounts li a i{
+        font-size: 20px !important;
+        padding-right: 5px;
+        color: var(--accent-color);
+      }
+      .socialaccounts li:hover a i{
+        color: var(--accent-color-hover);
+      }
+      .socialaccounts a h5{
+        color: var(--text-color);
+      }
+      /* IDEA: LARGE SCREENS */
+      @media(min-width: 700px){
+        .wrapper{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        #bg{
+            background-size: 100%;
+  
+      background-position: center center;
+  
+      background-repeat: no-repeat; 
+        }
+        .wrapper .wrapperD> *{
+          padding: 1em;
+        }
+        
+         form p{
+            padding-top: 30px;
+        }
+         form  .signup p{
+            padding-top: 10px;
+        }
+        .company-infor h3, .company-info ul, .band{
+          text-align: center;
+        }
+        .company-info h3, .company-info ul{
+            text-align: center;
+            margin: 80px 0 1rem 0;
+          }
+      }

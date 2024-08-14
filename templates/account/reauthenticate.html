@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth %}
+
+{% block head %}
+<title>
+    {% trans "Confirm Access" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+    .wrapper{
+        justify-content: center;
+        display: flex !important;
+      }
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container">
+        <h1 class="brand" >
+            {% element span %}
+                {% trans "Confirm Access" %}
+            {% endelement %}
+        </h1>
+        <p class="text-center">
+            {% blocktranslate %}To safeguard the security of your account, please enter your password:{% endblocktranslate %}
+        </p>
+        <div class="wrapper animated bounceInLeft "> 
+            
+            <div>
+                <div class="form-info">
+                    <div class="form">
+                        {% url 'account_reauthenticate' as action_url %}
+                        {% element form form=form method="post" action=action_url %}
+                            {% slot body %}
+                                {% csrf_token %}
+                                {% element fields form=form %}
+                                {% endelement %}
+                                {% if redirect_field_value %}
+                                    <input type="hidden"
+                                           name="{{ redirect_field_name }}"
+                                           value="{{ redirect_field_value }}" />
+                                {% endif %}
+                            {% endslot %}
+                            {% slot actions %}
+                                {% element button type="submit" %}
+                                    {% trans "Confirm" %}
+                                {% endelement %}
+                            {% endslot %}
+                        {% endelement %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

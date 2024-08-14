@@ -1,0 +1,98 @@
+
+/* @import url("theme.css"); */
+/* 
+static/
+│
+├── css/
+│   ├── maindashboard/
+│   │   ├── home/
+│   │   │   └── home.css
+|   |── styles.css
+│   ├── theme.css
+│
+└── ... 
+*/
+
+/* .item{
+  /* border: 3px solid red; 
+  height: 90vh;
+  padding-bottom: 10px;
+} */
+ /* .item2{
+  border: 3px solid rgb(224, 77, 77);
+} 
+.item3{
+  border: 3px solid rgb(34, 10, 10);
+}  */
+/* li{
+    list-style: none;
+  } */ 
+  
+  body{
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color) ;
+    color: var(--text-color) ;
+    transition: background-color 0.3s, color 0.3s;
+    --header-height: 50px;
+    --footer-height: 22px;
+    /* top | right | bottom | left */
+    margin: var(--header-height) 0 var(--footer-height) 0;
+  }
+  .preload * { /* IDEA: this is to stop the side navbar from
+     appeating and disappearing fast when page is refreshed */
+    transition: none !important;
+  }
+  /* main{
+    height: 89vh;
+  } */
+  .s2{
+    height: inherit;
+  }
+  .scroll-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--icon-bg-color);
+    padding: 1px 6px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: none;
+    z-index: 4;
+  }
+  .scroll-button:hover {
+    background-color: var(--icon-bg-color-hover);
+  }
+  .scroll-button:hover a{
+    color: var(--text-color);
+  }
+  
+  .scroll-button a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  .scroll-button a i {
+    font-size: 20px !important;
+  }
+  #scroll-to-top.show-button {
+    display: block;
+  }
+  
+
+.book-button {
+    background-color: var(--accent-color);
+    color: rgb(44, 42, 42);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.book-button:hover {
+    background-color: var(--accent-color-hover);
+}
+
+.appointment {
+    margin: 2rem;
+    text-align: center;
+}
+
+

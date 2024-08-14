@@ -1,0 +1,117 @@
+section{
+  display: flex;
+  flex-direction: row;
+  background: var(--bg-color);
+}
+#contact-page{
+    /* background: rgba(255, 255, 255, 0.15); */
+     border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.27);
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+  }
+.company-info  ul{ 
+    list-style: none;
+    padding:0;
+  }
+  .brand{
+    text-align: center;
+  }
+  .brand span {
+    color: var(--text-color) !important;
+    font-size: 24px !important;
+    font-weight: 700;
+  }
+  .wrapper{
+    box-shadow: 0 0 20px 0 rgba(72,94, 116, 0.7);
+    border-radius: 10px;
+    padding: 10px 0;
+  }
+  .wrapper > *{
+    padding: 1em;
+  }
+  .company-info{
+    /* background: var(--inverted-bg-color); */
+    color: var(--text-color);
+    box-shadow: 0 0 10px 0 var(--inverted-bg-color);
+    padding: 20px 5px 20px 5px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  .company-info h3{
+    font-weight: 700;
+    font-size: 30px !important;
+    text-transform:uppercase;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    text-decoration: underline;
+  }
+  .company-info ul li{
+    display: flex;
+    margin: 0 0 1rem 0;
+    align-items: center;
+    font-weight: 600;
+  }
+  .company-info ul li i{
+    font-size: 24px !important;
+    padding-right: 5px;
+    color: var(--accent-color);
+  }
+  .company-info ul li:hover i{
+    color: var(--accent-color-hover);
+  }
+  .contact form label{
+    display: block;
+  }
+  .contact form p{
+    margin: 0 ;
+  }
+  .full{ /* for message box, button */
+    grid-column: 1/ 3
+  }
+  .contact form button, .contact form input, .contact form textarea{
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #c9e6ff;
+  }
+  .contact form button{
+    background: var(--accent-color);
+    border: 0;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .contact form button:hover, .contact form button:focus{
+    background: var(--accent-color-hover);
+    outline: 0;
+    transition: background-color 2s  ease-out;
+  }
+  .contact p input{
+      height: 10px;
+  }
+  #id_message{
+    height: 100px;
+    width: 100%;
+  }
+
+  /* IDEA: LARGE SCREENS */
+  @media(min-width: 700px){
+    .wrapper{
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+    .wrapper > *{
+      padding: 1em;
+    }
+    .company-infor h3, .company-info ul, .band{
+      text-align: center;
+    }
+    .contact form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap:20px;
+    }
+  }

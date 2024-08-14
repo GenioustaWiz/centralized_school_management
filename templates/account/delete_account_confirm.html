@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %} 
+<title>
+    Confirm Account Deletion
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+    .wrapper{
+        justify-content: center;
+        display: flex !important;
+      }
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container" style="height: 89vh; ">
+        <h1 class="brand">
+            <span>Confirm Account Deletion</span>
+        </h1>
+        <p class="text-center">Are you sure you want to delete your account?</p>
+        <div class="wrapper animated bounceInLeft ">
+            <div>
+                <div class="form-info">
+                    <div class="form">
+                        <form method="post" action="{% url 'delete_account' %}">
+                            {% csrf_token %}
+                            <button type="submit">Yes, delete my account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</section>
+{% endblock %}

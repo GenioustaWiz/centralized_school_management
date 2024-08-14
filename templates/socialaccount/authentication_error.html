@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n allauth account %}
+
+{% block head %}
+<title>
+    {% trans "Social Network Login Failure" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container">
+        <h1 class="brand">
+          {% element span %}
+          {% trans "Social Network Login Failure" %}
+          {% endelement %}
+        </h1>
+        <div class="wrapper animated bounceInLeft ">
+            <p>
+                {% trans "An error occurred while attempting to login via your social network account." %}
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

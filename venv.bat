@@ -1,0 +1,1 @@
+start C:\Users\Geiousta\github-classroom\Powerlearnproject\Graduation-Projects\centralized_school_management\.venv\Scripts\activate

@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth %}
+
+{% block head %}
+<title> 
+    {% trans "Account Inactive" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+<style>
+    
+  </style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+    <div id="side-page" class="container" style="height: 89vh; ">
+      <h1 class="brand">
+        {% element span %}
+            {% trans "Account Inactive" %}
+        {% endelement %}
+      </h1>
+        <div class="wrapper animated bounceInLeft ">
+            <p>{% trans "This account is inactive." %}</p>
+        </div>
+    </div>  
+</section>
+{% endblock %}

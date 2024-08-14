@@ -1,0 +1,19 @@
+.profile{
+    display: grid;
+    /* grid-template-rows: 1fr 2fr; */
+
+}
+.profile-photo{
+    display: grid;
+    grid-template-rows: 2fr auto;
+}
+
+.change-pic a{
+    display: none;
+}
+.change-picinput{
+    display: none;
+}
+.change-pic label{
+    display: none;
+}
