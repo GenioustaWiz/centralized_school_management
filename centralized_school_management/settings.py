@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'students',
     'teachers',
     'parents',
-    'administration',
+    'school_employees',
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -72,6 +72,16 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     # end django-allauth
 ]
+# ======= Django RestFramework ======= #
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    ),
+}
+# ======= END Rest_framework =====#
 # ======= DJango  ALLAUTH ======= #
 AUTH_USER_MODEL = "accounts.User"
 SOCIALACCOUNT_PROVIDERS = {
@@ -112,6 +122,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     #New Added
     'allauth.account.middleware.AccountMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "centralized_school_management.urls"
@@ -141,7 +152,8 @@ TEMPLATES = [
 
                 # ========== Custom Context_Procsor =========
                 # this part is for the user_profile, for mostly sending the user Image to the header
-                'accounts.context_processors.user_info',
+                'accounts.utils.context_processors.user_info',
+                'main.utils.context_processors.Base_Data',
             ],
         },
     },
@@ -153,10 +165,27 @@ WSGI_APPLICATION = "centralized_school_management.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+# ============== MYSQL DATABAE SETTINGS ========= #
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": 'centralized_school_management',
+        'USER': 'root',
+        'PASSWORD': '20Mysql23',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        # note: always rememer to add this:
+        # import pymysql
+
+        # pymysql.install_as_MySQLdb()
+        # to __init__.py file on the project's folder
     }
 }
 

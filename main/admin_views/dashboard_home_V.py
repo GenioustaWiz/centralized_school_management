@@ -6,17 +6,14 @@ from django.contrib import messages
 
 from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
-from users.models import User   # Import the User model if not already imported
+from accounts.models import User   # Import the User model if not already imported
 from django.shortcuts import render
 
-from blog.models.article_m import *
-from visitors_counter.models import Visit
+# from visitors_counter.models import Visit
 @login_required
 def main_dashboard_home(request):
     
-    total_blogs = Blog.objects.count()
-    total_visitors, total_visits = Visit.get_total_visitors_and_visits()
-    total_published_blogs = Blog.objects.filter(status='PUBLISHED').count() or 0
+    # total_visitors, total_visits = Visit.get_total_visitors_and_visits()
     
     # Get the superuser (admin) user object
     # superuser = User.objects.get(username='admin')  # Replace 'admin' with the superuser's username
@@ -27,10 +24,8 @@ def main_dashboard_home(request):
     recent_activities = LogEntry.objects.order_by('-action_time')[:20]  # Get the last 10 log entries
 
     context = {
-        'total_blogs': total_blogs,
-        'total_visitors': total_visitors,
-        'total_visits': total_visits,
-        'total_published_blogs': total_published_blogs,
+        # 'total_visitors': total_visitors,
+        # 'total_visits': total_visits,
         'log_entries': recent_activities
     }
     return render(request, 'maindashboard/dashboard_home.html', context)

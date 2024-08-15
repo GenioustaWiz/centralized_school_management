@@ -26,9 +26,9 @@ urlpatterns += [
     path('main-dashboard/', main_dashboard_home, name='main_dashboard_home'),
     # ===============EDIT HOMEPAGE CONTENT===============
     path('home-page-view/', home_page_view, name='home_page_view'),
-    path('edit-home-page/', edit_home_page, name='edit_home_page'),
-    path('edit-PL-page/', edit_pl_page, name='edit_pl_page'),
-    path('edit-PL-page/<int:pk>/edit/', edit_pl_page, name='edit_pl_page'),
+    # path('edit-home-page/', edit_home_page, name='edit_home_page'),
+    # path('edit-PL-page/', edit_pl_page, name='edit_pl_page'),
+    # path('edit-PL-page/<int:pk>/edit/', edit_pl_page, name='edit_pl_page'),
     # =============EDIT BASE DATA===========
     path('basedata-view/', base_data_view, name='base_data_view'),
     path('base_data/edit/', edit_base_data, name='edit_base_data'),
@@ -37,9 +37,6 @@ urlpatterns += [
     path('about-page-edit/', about_page_edit, name='about_page_edit'),
     path('about-list-edit/<int:pk>/', about_list_edit, name='about_list_edit'),
     path('about-list/', about_list_edit, name='about_list_edit'),
-    # ==========EDIT COMPANY CONTACT INFORMATION======================
-    path('company-contact/', companycontact_info_view, name='companycontact_info_view'),
-    path('edit-company-contact-info/', edit_company_contact_info, name='edit_company_contact_info'),
     # ============= TOP FOOTER INFORMATION EDIT===========
     path('top-footer-view/', top_footer_view, name='top_footer_view'),
     path('create-top-footer-content/<int:pk>/', create_top_footer_content, name='create_top_footer_content'),

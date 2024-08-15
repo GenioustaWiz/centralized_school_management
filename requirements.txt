@@ -1,18 +1,28 @@
-# requirements.txt
 Django
 djangorestframework
 django-cors-headers
 
 # image processing
 Pillow
-
 # for phone numbers processing
 django-phonenumber-field
 phonenumbers
 Babel
 
+# delete if not needed
+ # twilio==8.5.0
+
+# for tinymce editor 
+django-tinymce
+
 django-allauth
 
 # For .ENV File
 django-environ
+
+pymysql
+
+requests 
+PyJWT
+cryptography
 

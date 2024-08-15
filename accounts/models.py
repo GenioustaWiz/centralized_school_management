@@ -80,7 +80,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_type = models.CharField(max_length=20, choices=USER_TYPES)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
-    email = models.EmailField(max_length=254, unique=True)
+    email = models.EmailField(unique=True)
     phone_number = PhoneNumberField(null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     

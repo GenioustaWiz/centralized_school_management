@@ -1,5 +1,5 @@
 from django import forms
-from users.models import User 
+from accounts.models import User 
 from tinymce.widgets import TinyMCE
 from ..models.aboutP_M import AboutPage, AboutList
 
@@ -15,7 +15,7 @@ class AboutPageForm(forms.ModelForm):
 #         model = AboutList
 #         fields = ['title', 'image', 'desc']
 
-# from users.models import Profile
+# from accounts.models import Profile
 class AboutListForm(forms.ModelForm):
     # def __init__(self, *args, **kwargs):
     #     super(AboutListForm, self).__init__(*args, **kwargs)

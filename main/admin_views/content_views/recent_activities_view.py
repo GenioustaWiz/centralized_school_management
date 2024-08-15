@@ -2,7 +2,7 @@
 
 from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
-from users.models import User   # Import the User model if not already imported
+from accounts.models import User   # Import the User model if not already imported
 from django.shortcuts import render
 
 def recent_activities(request):

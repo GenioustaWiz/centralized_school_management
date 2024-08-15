@@ -7,7 +7,7 @@
 #                         'yourapp.context_processors.user_profile',
 #                     ]
 
-from .models import User  # Replace with the actual import path for your User model
+from accounts.models import User  # Replace with the actual import path for your User model
 
 def user_info(request):
     # Assuming your User model is associated with the request
