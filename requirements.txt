@@ -15,13 +15,12 @@ Babel
 # for tinymce editor 
 django-tinymce
 
-django-allauth
-
 # For .ENV File
 django-environ
 
 pymysql
 
+django-allauth
 requests 
 PyJWT
 cryptography

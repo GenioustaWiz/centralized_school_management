@@ -1,0 +1,213 @@
+.header {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  /* background-color: rgba(1, 2, 4, 0.7); */
+  display: grid;
+  /* IDEA: so that we can fit other stuff in the header. e.g logo */
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.header__button {
+  grid-column: 1;
+  width: var(--header-height);
+  flex-shrink: 0;
+  /* IDEA: Making sure it will never be shrinked down by elements from the right */
+  background: none;
+  outline: none;
+  border: none;
+  color: rgb(202, 178, 178);
+  cursor: pointer;
+}
+
+.header__button img {
+  height: 17px;
+  width: 17px;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 6;
+  /* margin-top:10px; */
+  font-family: emoji;
+  font-weight: 700;
+  color: #198754;
+  text-transform: uppercase;
+}
+
+.logo {
+  font-size: 30px !important;
+}
+
+.logo span {
+  color: #0474bc;
+  font-size: 30px !important;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  grid-column: 9;
+}
+
+.nav__links {
+  position: fixed;
+  /* top: 0; */
+  left: 0;
+  z-index: 1005;
+  height: 100vh;
+  width: 250px;
+  padding: 0 5px;
+  background: #878686;
+  transform: translate(-250px);
+  transition: transform 0.3s;
+}
+
+/* IDEA: For Opening the Navbar */
+.nav--open .nav__links {
+  transform: translate(0);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav__link {
+  display: flex;
+  align-items: center;
+  color: rgb(255, 251, 251);
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 12px 0 12px 6px;
+  transition: transform 0.3s;
+  /* background-color: rgb(73, 57, 57); */
+  /* border: 1px inset #f1dada; */
+  margin: 10px 0 0 0;
+  /*top right bottom left */
+}
+
+.nav__link a {
+  margin-top: 10px;
+
+}
+
+/* IDEA: Putting spae btwn icons and text */
+.nav__link>i, .nav__link span i {
+  margin-right: 15px;
+  height: 20px;
+  width: 20px;
+}
+
+/* .nav__link--active {
+  color: #009578;
+
+} */
+
+.nav__link:hover {
+  background: rgb(69 176 78 / 22%);
+}
+
+.nav__overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.nav--open .nav__overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* for dropdowns found in Nav_link */
+#nav .dropdown-btn {
+  display: block;
+  width: 100%;
+}
+
+#nav .dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+}
+
+#nav .dropdown-content {
+  display: none;
+  position: relative;
+  /* right: 0; */
+  margin-top: 10px;
+  /* background-color: rgb(73, 57, 57); */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+
+}
+
+#nav .dropdown-content a {
+  color: rgb(255, 255, 255);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+#nav .dropdown-content a:hover {
+  background-color: rgb(161, 249, 174);
+  color: black;
+}
+
+#nav .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* end of nav links dropdowns */
+.footer {
+  color: #e9ebee;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(1, 2, 4, 0.8);
+}
+
+/* IDEA: Mobile to Tablet */
+@media (min-width: 320px) and (max-width: 720px) {
+  .header {
+    align-items: center;
+  }
+
+  #navbar_d {
+    display: none;
+  }
+}
+
+@media (min-width: 888px) {
+
+  .header__button,
+  .nav__links {
+    display: none;
+  }
+
+  .header {
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .user{
+    grid-column: 12;
+    display: inline-flex;
+    justify-content: right;
+    margin-right: 4px;
+  }
+
+}

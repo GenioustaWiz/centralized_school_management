@@ -1,0 +1,136 @@
+{% extends 'maindashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block head %}
+<title> 
+  About Us
+</title>
+<link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/about.css' %}" type="text/css">
+{% comment %} <link rel="stylesheet" href="{% static 'css/extra.css' %}" type="text/css"> {% endcomment %}
+<style>
+  .des-p p {
+    padding: 0 25px 0 5px;
+  }
+  .about-list{
+    padding-top: 25px;
+  }
+  .add-icon{
+    top: -10px;
+  }
+  tr:nth-child(even) {
+    background-color: #bac3d1a1;/* Set the background color for even rows */
+    color: #000;/* Set the text color for even rows (optional) */
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+ <section class=" description"> <!-- s2 -->
+    <div id="description-page"  class=" container-xxl">
+        
+        <div class=" about-list edit-icon-h ">
+            <h1>Users Group List</h1>
+            <div class="dev text-center">
+                <h2 ><hr style="margin: 0.5rem 0; border-top: 3px dashed black; background: none;"> <!-- Solid divider --></h2>
+            </div>
+            <form method="post" action="{% url 'group_list' %}">
+                {% csrf_token %}
+                <div class="actions">
+                    <label>
+                        Action: 
+                        <select name="action" required="">
+                            <option value="" selected="">---------</option>
+                            <option value="delete_selected">Delete selected groups</option>
+                        </select>
+                    </label>
+                    <input type="hidden" name="select_across" value="0" class="select-across">
+                    <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
+                    <span class="action-counter" data-actions-icnt="4"></span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="action-checkbox-column">
+                                <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+                                <div class="clear"></div>
+                            </th>
+                            <th>Group Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for group in groups %}
+                            <tr>
+                                <td class="action-checkbox">
+                                    <input type="checkbox" name="_selected_action" value="{{group.pk}}" class="action-select">
+                                </td>
+                                <th>
+                                    <a href="{% url 'group_detail' pk=group.pk %}">
+                                        {{ group.name }}
+                                    </a>
+                                </th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+            <div class="edit-icon">
+                <a href="{% url 'add_group' %}">
+                <i class="bi bi-database-fill-add"></i>
+                </a>
+            </div>
+        </div>           
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the action toggle checkbox
+            const actionToggle = document.getElementById('action-toggle');
+    
+            // Get all the action-select checkboxes
+            const actionSelectCheckboxes = document.querySelectorAll('.action-select');
+
+            // Get the action counter span
+            const actionCounter = document.querySelector('.action-counter');
+
+            // Function to update the action counter
+            function updateActionCounter() {
+                const selectedCount = Array.from(actionSelectCheckboxes).filter(function (checkbox) {
+                    return checkbox.checked;
+                }).length;
+    
+                const totalCount = actionSelectCheckboxes.length;
+    
+                actionCounter.textContent = selectedCount + ' of ' + totalCount + ' selected';
+            }
+    
+            // Function to check or uncheck the action-toggle based on the state of action-select checkboxes
+            function updateActionToggle() {
+                actionToggle.checked = Array.from(actionSelectCheckboxes).every(function (checkbox) {
+                    return checkbox.checked;
+                });
+                // Update the action counter
+                updateActionCounter();
+            }
+    
+            // Add event listener to the action toggle checkbox
+            actionToggle.addEventListener('change', function () {
+                // Set the checked state of all action-select checkboxes to match the action toggle checkbox
+                actionSelectCheckboxes.forEach(function (checkbox) {
+                    checkbox.checked = actionToggle.checked;
+                });
+                // Update the action counter
+                updateActionCounter();
+            });
+    
+            // Add event listener to each action-select checkbox
+            actionSelectCheckboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', updateActionToggle);
+            });
+
+            // Initial call to update the action counter when the page loads
+            updateActionCounter();
+        });
+    </script>
+    
+  </section>
+{% endblock content %}

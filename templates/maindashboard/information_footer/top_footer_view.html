@@ -1,0 +1,179 @@
+
+{% extends 'maindashboard/dashboard_base.html' %}
+{% comment %} displays Write  {% endcomment %}
+
+{% load static %}
+
+{% block head %}
+<title> Information Footer </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+{% comment %} <link rel="stylesheet" href="{% static 'css/top-footer.css' %}" type="text/css"> {% endcomment %}
+<style>
+    .content-links{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 200px);
+        gap: 30px;
+        justify-content: center;
+        padding-bottom: 70px;
+        grid-auto-flow: dense;
+        /* background-color: rgb(20, 19, 19); */
+        padding-top: 20px;
+        position: relative;
+        z-index: 2;
+    }
+    .in-heading{
+        text-align: center;
+    }
+    .content-links .edit-icon-h{
+        padding: 5px;
+        background-color: #dcefef;
+    }
+    .content-links a{
+        color: black;
+    }
+    .content-links .edit-icon a{
+        color: red;
+    }
+    .f-company, .f-contact{
+        
+        margin: 20px 0;
+    }
+   .f-company, #f-contact, #f-socialmedia{
+    background-color: azure;
+    padding: 5px;
+    }
+   .fa-triangle-exclamation{
+        color: red;
+   }
+</style>
+{% endblock head %}
+{% block content %}
+ 
+<section class="item2 section write-A-page">
+    <div class="write-a-c bg--white">
+        <div id="w-a-heading">
+            <h2> Footer Information</h2>
+            <h6 class="warning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Click the edit/add button to edit or save new footer information.
+            </h6>
+        </div>
+        <div class="content-body">
+            <footer class="top--footer">
+                <div class="f-company">
+                    <h4 class="in-heading">Footer content with links</h4>
+                    <div class=" content-links edit-icon-h">
+                        {% if top_footer_headings %}
+                        {% for heading in top_footer_headings %}
+                        <div class="edit-icon-h">
+                            <h4>{{ heading.heading }}</h4>
+                            <hr style="margin: 0.1rem 0; border-top: 1px dashed black; background: none;">
+                            <ul>
+                                {% for content_item in heading.content_items.all %}
+                                <li>
+                                    <a href="{{ content_item.url }}">{{ content_item.content }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="edit-icon">
+                                <a href="{% url 'create_top_footer_content' pk=heading.id %}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="edit-icon-h">
+                            <p>No Footer information. Click the add button to add new</p>
+                        </div>
+                        {% endif %}
+                        <div class="edit-icon">
+                            <a href="{% url 'create_top_footer_content' %}">
+                            <i class="bi bi-database-fill-add"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-contact">
+                    <div id="f-contact" class="edit-icon-h">
+                        <h4 class="in-heading">Contact</h4>
+                        {% if company_info %}
+                        <ul>
+                            <li>
+                                {{company_info.address}}
+                            </li>
+                            <li> 
+                                {{company_info.email}} 
+                            </li>
+                            <li>{{company_info.phone_number}}</li>
+                        </ul>
+                        <div class="edit-icon">
+                            <a href="{% url 'edit_company_contact_info'%}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </div>
+                        {% else %}
+                        <p>Click the add button to add contact info</p>
+                        <div class="edit-icon">
+                            <a href="{% url 'edit_company_contact_info' %}">
+                            <i class="bi bi-database-fill-add"></i>
+                            </a>
+                        </div>
+                        {% endif %}
+                        
+                    </div>
+                    <div id="f-socialmedia" class="edit-icon-h">
+                        <h4 class="in-heading">Social Media</h4>
+                        {% if social_media_links %}
+                        <ul>
+                            
+                            <li>
+                                <a href="{{ social_media_links.facebook_link }}">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                    - {{ social_media_links.facebook_link }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ social_media_links.twitter_link }}">
+                                    <i class="fa-brands fa-twitter"></i>
+                                    - {{ social_media_links.twitter_link }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ social_media_links.whatsapp_link }}">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    - {{ social_media_links.whatsapp_link }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ social_media_links.linkedIn_link }}">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                    - {{ social_media_links.linkedIn_link }}
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="edit-icon">
+                            <a href="{% url 'create_social_media_links' %}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </div>
+                        {% else %}
+                            <p>No Social Media Accounts Saved</p>
+                            <div class="edit-icon">
+                                <a href="{% url 'create_top_footer_content' %}">
+                                <i class="bi bi-database-fill-add"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+    
+            </footer>
+        </div>
+    </div>
+</section>
+
+{% endblock content%}

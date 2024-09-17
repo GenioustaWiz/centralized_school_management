@@ -1,0 +1,53 @@
+{% extends 'maindashboard/dashboard_base.html'  %}
+{% load static %}
+
+{% block head %}
+<title>Profile Edit</title>
+<link rel="stylesheet" href="{% static 'css/users/profile_home.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<style>
+  select{
+    border: 1px solid #c9e6ff;
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+<section class="s2 profile">
+    <div class=" profile-main  container-xl">
+        {% include 'maindashboard/users_admin/user_sidebar.html' %}
+           
+    <!--==========SECTION FOR EDITING USER PROFILE============-->
+        <section id="edit-profile" style="justify-items: center;">
+            
+            <div class="form-info container-xl">
+            <div class="form" style="margin-bottom: 10px;">
+                {% if profile.user.groups.exists %}
+                {% for group in profile.user.groups.all %}
+                <h5 class="text-secondary">User Group Name: {{ group.name }}</p>
+                {% endfor %}
+                {% else %}
+                    <p class="text-secondary">No groups assigned</p>
+                {% endif %}
+                <form class="w-a-body" method="POST"  enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <div class="button" style="margin-top: 20px;">
+                      {% if profile.groups.exists %}
+                      <button type="submit" name="action" value="remove_group"style="margin-top: 20px;">
+                          Remove Group</button>
+                      {% else %}
+                      <button type="submit" name="action" value="save_group" style="margin-top: 20px;">
+                          Save Group</button>
+                      {% endif %}
+                      <button type="submit" name="action" value="delete_user">Delete User</button>
+                  </div>
+              </form> <!-- end of Class w-a-body-->
+            </div>
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock content %} 

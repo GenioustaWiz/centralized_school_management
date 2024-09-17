@@ -1,0 +1,68 @@
+{% extends 'maindashboard/dashboard_base.html'  %}
+{% load static %}
+
+
+
+{% block head %}
+<title>
+  Visitors List
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
+  th{
+    padding-right: 20px;
+  }
+  #contact-page{
+    text-align: center;
+  }
+  @media (max-width: 592px) {
+    table {
+        font-size: 13px;
+    }
+  }
+  /* Media query for screens with a width of 500px or less */
+  @media (max-width: 500px) {
+    table {
+        font-size: 11px;
+    }
+  }
+  tr:nth-child(even) {
+    background-color: #bac3d1a1;/* Set the background color for even rows */
+    color: #000;/* Set the text color for even rows (optional) */
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">School List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>School Type</th>
+                    <th>Education Levels</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for school in schools %}
+                <tr>
+                    <td><a href="{% url 'school_detail' school.slug %}">{{ school.name }}</a></td>
+                    <td>{{ school.location }}</td>
+                    <td>{{ school.school_type }}</td>
+                    <td>{{ school.education_levels }}</td>
+                    <td>
+                        <a href="{% url 'school_edit' school.id %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url 'school_delete' school.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock%}

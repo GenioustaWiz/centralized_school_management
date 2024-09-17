@@ -1,0 +1,48 @@
+{% extends 'maindashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block head %}
+<title> 
+  About Us
+</title>
+<link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/about.css' %}" type="text/css">
+{% comment %} <link rel="stylesheet" href="{% static 'css/extra.css' %}" type="text/css"> {% endcomment %}
+<style>
+  .des-p p {
+    padding: 0 25px 0 5px;
+  }
+  .about-list{
+    padding-top: 25px;
+  }
+  .add-icon{
+    top: -10px;
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+ <section class=" description"> <!-- s2 -->
+    <div id="description-page"  class=" container-xxl">
+        <div class="dev text-center">
+          <h2 ><hr style="margin: 0.5rem 0; border-top: 3px dashed black; background: none;"> <!-- Solid divider --></h2>
+        </div>
+        <div class=" about-list edit-icon-h ">
+            {% if  profiles %}
+            {% for profile in profiles %}
+            <div class="about--list">
+                <a href="{% url 'user_detail' user_id=profile.id %}">
+                    <img src="{{profile.image.url}}" width="200" height="200" alt="">
+                    <div class="bottom-name">{{ profile.username }}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% else %}
+                <p> No Imformation Available </p>
+            {% endif %}
+        </div>           
+    </div>
+    
+  </section>
+{% endblock content %}

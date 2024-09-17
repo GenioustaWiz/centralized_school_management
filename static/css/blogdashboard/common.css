@@ -1,0 +1,178 @@
+.messages{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.messages li{
+    background-color: #8fe38f;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+.bfr-r-a {
+    display: flex;
+    margin: 50px 0 30px 0;
+    /*top right bottom left  */
+    padding-left: 10px;
+
+}
+
+#bfr-r-a {
+    display: flex;
+    align-items: center;
+}
+
+.visit-website{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.visit-website button {
+    margin-right: 30px;
+    font-size: 15px;
+    background-color: #75dd75;
+    padding: 0 10px;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.visit-website>button>a {
+    color: white;
+}
+
+.recent-articles {
+    padding-bottom: 10px;
+    background-color: white;
+    margin: 10px 20px 50px 20px;
+    /*top right bottom left  */
+
+}
+
+#r-a-heading {
+    margin: 0 0 50px 10px;
+    /*top right bottom left  */
+    padding-top: 10px;
+}
+
+#r-a-body {
+    display: grid;
+    justify-items: center;
+    padding: 0 10px;
+}
+
+.r-a-body {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px !important;
+    width: 100%;
+}
+.r-a-body.img{
+    width: fit-content;
+    height: fit-content;
+    background-color: blue;
+}
+.post-arthur{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.post-arthur li{
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+.post-arthur li h6{
+    margin: 0 10px 0 0;
+    font-weight: 700;
+}
+
+/* Dropdown For article list Display */
+.meta .dropdown {
+    display: inline-block;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.time .btn {
+    padding: 0;
+    border: none;
+    font-size: large ;
+    color: green;
+}
+
+#time-dropdown:hover{
+    color: red;
+}
+.time .dropdown-menu .dropdown-item:hover{
+    color: #f50000;
+    background-color: #3f3030;
+}
+
+
+/* .meta .dropdown:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+    inset: 0px 0px auto auto;
+    margin: 0px;
+    transform: translate(0px, 28px);
+  } */
+
+.meta span {
+    display: inline-block;
+}
+
+.meta span:after {
+    /* In CSS, ::after creates a pseudo-element that is the last child of the selected element. 
+    It is often used to add cosmetic content to an element with the content property. 
+    It is inline by default. */
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #8f8f8f;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    position: relative;
+    top: -3px;
+}
+
+/* <<<<<<---------Screen */
+@media (max-width: 548px) {
+    .r-a-body{
+        flex-direction: column;
+    }
+    .r-a-body img{
+        width: 100%;
+    }
+    .bfr-r-a {
+        flex-direction: column;
+    }
+
+    .visit-website {
+        margin-top: 20px;
+    }
+}
+
+/* Screen------>>>>>>> */
+@media (min-width:548px) {
+    .bfr-r-a {
+        justify-content: space-between;
+
+    }
+}
+
+/* <<<<<<---------Screen */
+
+@media (max-width: 720px) {
+    .post-arthur{
+        flex-direction: column;
+    }
+  }

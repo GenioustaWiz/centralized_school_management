@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Profile</title>
+<link rel="stylesheet" href="{% static 'css/users/profile_home.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+{% endblock head %}
+
+{% block content %}
+<section class="s2 profile">
+  <div class=" profile-main  container-xl">
+    <div class=" img-area">
+      <div class="  profile-photo">
+        <a href="{{user.profile.image.url}}">
+          <img src="{{user.profile.image.url}}" alt="user-image" width="150" height="150"
+            class="profile-pic rounded-circle">
+        </a>
+        <div class="info-">
+          <h5 class="account-heading">{{ user.username }} </h5>
+          <p class="text-secondary">{{ user.email }}</p>
+          {% if profile.user.groups.exists %}
+                    {% for group in profile.user.groups.all %}
+                    <p class="text-secondary">Designation{{ group.name }}</p>
+                    {% endfor %}
+            {% endif %}
+        </div>
+        <div class="select-">
+          <ul>
+            <li>
+              <a href="#profile-info" id="p-i">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="#activites" id="e-p">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <span>Recent Activities</span>
+              </a>
+            </li>
+            <li>
+              <a href="#edit-profile" id="a-">
+                <i class="fa fa-solid fa-pen-to-square"></i>
+                <span>Edit Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="  socialMedia-area">
+        <ul>
+          <li>
+            <a href="#" class="github">
+              <i class="fa fa-brands fa-github"></i>
+              <span> Github</span>
+              <!-- <span class="sm-names"> Github name</span> -->
+            </a>
+          </li>
+
+
+          <li>
+            <a href="#">
+              <i class="fa fa-brands fa-google-plus-g"></i>
+              <span> Google+</span>
+              <!-- <span class="sm-names"> Google name</span> -->
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-brands fa-instagram"></i>
+              <span> Instagram</span>
+              <!-- <span class="sm-names"> Instagram name</span> -->
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <section id="profile-info">
+      <div class=" info-area">
+        <div class=" info-area-s">
+          <div class="user-details">
+            <ul>
+                {% for field, value in profile_data.items %}
+              <li style=" margin-top: 10px; ">
+                <i class=" U-fixed-details">{{ field }} </i>
+                <span class="U-valiable-details">{{ value }}</span>
+              </li>
+              <hr class="hr-dashed">
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="current-projects">
+            <div class="current-areas">
+              <div class="current-no">
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="current-areas">
+              <div>
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="current-areas">
+              <div>
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="current-areas">
+              <div>
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--==========SECTION FOR EDITING USER PROFILE============-->
+    <section id="edit-profile" style="justify-items: center;">
+       
+      <div class="form-info">
+        <div class="form" style="margin-bottom: 10px;">
+          
+          <form method="post" style="padding-top: 0;">
+            <h6 class="text-center" style="margin-bottom: 0; color: rgb(117, 117, 228);">
+              Edit profile information here
+            </h6> 
+            {% csrf_token %}
+            <div class=" user-form signup">
+              
+              <!-- User form -->
+              {{ u_form.as_p }}
+              <p>
+                <label for="id_phone_number">Phone number:</label>
+                {{p_form.phone_number}}
+                
+              </p>
+              <p>
+                <label for="id_country">Country:</label>
+                {{p_form.country}}
+              </p>
+              <p>
+                <label for="id_title">Title:</label>
+                {{p_form.title}}
+                </p>
+                <p class="img-change">
+                  <label for="id_image">Image:</label>
+                 {{p_form.image}}
+               </p>
+               <p>
+                <label for="id_facebook">Facbook link:</label>
+               {{p_form.facebook}}
+              </p>
+              <p>
+                <label for="id_github">Github Link:</label>
+              {{p_form.github}}
+              </p>
+              <p>
+                <label for="id_instagram">Instagram Link:</label>
+              {{p_form.instagram}}
+              </p>
+              <p>
+                <label for="id_googleplus">Google+ Link:</label>
+              {{p_form.googleplus}}
+              </p>
+            </div>
+            <div class="profile-form signup">
+              <p>
+                <label for="id_desc">Desc:</label>
+                {{p_form.desc}}
+               </p>
+            </div>
+            <p class="full" style="padding-top: 6px;">
+              <button type="submit" value="register" style=" padding: 5px; width: 120px; margin-left: 40%; 
+              border-radius: 25px;
+              ">Update</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section id="activities" class="center" style="height: 600px; width: 100%; background-color: blueviolet;">
+      <h2>no activities</h2>
+    </section>
+  </div>
+</section>
+{% endblock content %}
+
+{% block js %}
+<script>
+  var x = document.getElementById("p-i");
+  var y = document.getElementById("a-");
+  var z = document.getElementById("e-p");
+  x.addEventListener("click", myFunction);
+  y.addEventListener("click", mySecondFunction);
+  z.addEventListener("click", myThirdFunction);
+
+  function myFunction() {
+    var x = document.getElementById("profile-info");
+    var y = document.getElementById("edit-profile");
+    var z = document.getElementById("activities");
+    x.style.display = "block";
+    y.style.display = "none";
+    z.style.display = "none";
+  }
+
+  function mySecondFunction() {
+    var x = document.getElementById("profile-info");
+    var y = document.getElementById("edit-profile");
+    var z = document.getElementById("activities");
+    x.style.display = "none";
+    y.style.display = "grid";
+    z.style.display = "none";
+  }
+
+  function myThirdFunction() {
+    var x = document.getElementById("profile-info");
+    var y = document.getElementById("edit-profile");
+    var z = document.getElementById("activities");
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "block";
+  }
+</script>
+{% endblock js %}

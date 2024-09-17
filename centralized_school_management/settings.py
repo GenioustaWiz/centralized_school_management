@@ -37,7 +37,9 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ngrok-free.app', 'localhost', '192.168.176.182']
+
+CSRF_TRUSTED_ORIGINS = ["https://34fc-41-90-70-89.ngrok-free.app", 'http://192.168.176.182:8000/']
 
 
 # Application definition
@@ -80,6 +82,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
 }
 # ======= END Rest_framework =====#
 # ======= DJango  ALLAUTH ======= #
@@ -176,11 +181,11 @@ WSGI_APPLICATION = "centralized_school_management.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": 'centralized_school_management',
-        'USER': 'root',
-        'PASSWORD': '20Mysql23',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        "NAME": env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
         # note: always rememer to add this:
         # import pymysql
 

@@ -1,0 +1,45 @@
+
+{% extends 'maindashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block head %}
+<title> {{ attendance_detail.name }} Details </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
+<style>
+    .heading{
+        font-size: 20px;
+        background-color: azure;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        padding: 0 25px 0 5px;
+    }
+    .frontP-cards {
+        top: 0;
+        background-color: azure;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        margin: 0 15px;
+        gap: 4px;
+        padding-bottom: 20px;
+    }
+        .card__tag {
+            color: black !important;
+        }
+</style>
+{% endblock head %}
+{% block content %}
+ 
+
+<!-- Write New Articles -->
+<section class="item2 section write-A-page">
+    <div class="container mt-5">
+        <h1 class="mb-4">{{ attendance_detail.name }} Details</h1>
+        <p><strong>Location:</strong> {{ attendance_detail.location }}</p>
+        <p><strong>School Type:</strong> {{ attendance_detail.school_type }}</p>
+        <p><strong>Education Levels:</strong> {{ attendance_detail.education_levels }}</p>
+        <a href="{% url 'student_list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</section>
+        
+{% endblock content%}

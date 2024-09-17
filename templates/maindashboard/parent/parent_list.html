@@ -1,0 +1,71 @@
+{% extends 'maindashboard/dashboard_base.html'  %}
+{% load static %}
+
+
+
+{% block head %}
+<title>
+  Parents List
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
+  th{
+    padding-right: 20px;
+  }
+  #contact-page{
+    text-align: center;
+  }
+  @media (max-width: 592px) {
+    table {
+        font-size: 13px;
+    }
+  }
+  /* Media query for screens with a width of 500px or less */
+  @media (max-width: 500px) {
+    table {
+        font-size: 11px;
+    }
+  }
+  tr:nth-child(even) {
+    background-color: #bac3d1a1;/* Set the background color for even rows */
+    color: #000;/* Set the text color for even rows (optional) */
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Parents List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <!-- <th>number of Schools</th> -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for parent in parents %}
+                <tr>
+                    <td><a href="{% url 'parent_detail' parent.id %}">{{ parent.user.first_name }}</a></td>
+                    <td>{{ parent.user.email }}</td>
+                    <td>{{ parent.user.phone_number }}</td>
+                    
+                    {% comment %}
+                      <td>{{ parent.no_of_schools }}</td>
+                    {% endcomment %}
+                    <td>
+                        <a href="{% url 'edit_add_parent' parent.id %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url 'parent_delete' parent.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock%}

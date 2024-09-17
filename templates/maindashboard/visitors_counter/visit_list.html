@@ -1,0 +1,66 @@
+{% extends 'maindashboard/dashboard_base.html'  %}
+{% load static %}
+
+
+
+{% block head %}
+<title>
+  Visitors List
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
+  th{
+    padding-right: 20px;
+  }
+  #contact-page{
+    text-align: center;
+  }
+  @media (max-width: 592px) {
+    table {
+        font-size: 13px;
+    }
+  }
+  /* Media query for screens with a width of 500px or less */
+  @media (max-width: 500px) {
+    table {
+        font-size: 11px;
+    }
+  }
+  tr:nth-child(even) {
+    background-color: #bac3d1a1;/* Set the background color for even rows */
+    color: #000;/* Set the text color for even rows (optional) */
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+
+<section class="s2 contact ">
+    <div id="contact-page" class="item container">
+        <h1>Visitor List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>IP Address</th>
+                    <th>Visit Count</th>
+                    <th>Last Visit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visitor in visitors %}
+                <tr>
+                    <td>{{ visitor.timestamp }}</td>
+                    <td>{{ visitor.ip_address }}</td>
+                    <td>{{ visitor.visit_count }}</td>
+                    <td>{{ visitor.last_visit }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock%}

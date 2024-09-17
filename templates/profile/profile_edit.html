@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Profile Edit</title>
+<link rel="stylesheet" href="{% static 'css/users/profile_home.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<style>
+  select{
+    border: 1px solid #c9e6ff;
+  }
+  .phone-no{
+    display: flex;
+    padding-top: 0 !important;
+  }
+  .phone-no select{
+    width: 70px;
+    margin-right: 5px;
+  }
+  select.P-no{
+    width: fit-content;
+  }
+  #id_country{
+    padding: 0.36em;
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+<section class="s2 profile">
+  <div class=" profile-main  container-xl">
+    
+    {% include 'profile/includes/profile_side_bar.html' %}
+    
+    <!--==========SECTION FOR EDITING USER PROFILE============-->
+    <section id="edit-profile" style="justify-items: center;">
+       
+      <div class="form-info container-xl">
+        <div class="form" style="margin-bottom: 10px;">
+          
+          <form method="post" enctype="multipart/form-data" style="padding-top: 0;" id="profileForm">
+            <h3 class="text-center" style="margin-bottom: 0px;
+            color: var(--text-color);
+            font-size: 24px !important;
+            font-weight: 700;">
+              Edit profile information here
+            </h3> 
+            {% csrf_token %}
+            <div class=" user-form signup">
+              <!-- User form -->
+               <!-- === ID & EMAIL -->
+              {{ u_form.as_p }}
+              {{u_form.errors}}
+              <!-- === ==== -->
+              <!-- === EXTRA ENTRIES -->
+              {{c_form.as_p}}
+              {{c_form.errors}}
+              <!-- ==== ====== -->
+              <!-- ==== PHONE NUMBER ==== -->
+              <div id="phone-no" style="padding-top: 10px;">
+                
+                <label for="id_phone_number">Phone number:</label>
+                
+                <p class="phone-no">
+                {{p_form.phone_number}}
+                {{p_form.errors}}
+                <!-- Hidden field for combined phone number -->
+                <input type="hidden" name="combined_phone_number" id="combined_phone_number" />
+
+                </p>
+               
+            </div>
+            <!-- ===== ====== -->
+             
+              <!-- ==== IMAGE FORM ==== -->
+              {{i_form.as_p}}
+              {{i_form.errors}}
+              <!-- ===== ====== -->
+            </div>
+            <p class="full" style="padding-top: 6px;">
+              <button type="submit" value="register" style=" padding: 5px; width: 120px; margin-left: 40%; 
+              border-radius: 25px;
+              ">Update</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock content %}

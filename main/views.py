@@ -5,4 +5,4 @@ from .models.aboutP_M import *
 def main_index(request):
 
     # Render the response and send it back!
-    return render(request, 'home.html', context )
+    return render(request, 'index.html')

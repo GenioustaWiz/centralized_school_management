@@ -1,0 +1,89 @@
+{% extends 'maindashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block head %}
+<title> 
+  About Us
+</title>
+<link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/about.css' %}" type="text/css">
+{% comment %} <link rel="stylesheet" href="{% static 'css/extra.css' %}" type="text/css"> {% endcomment %}
+<style>
+  .des-p p {
+    padding: 0 25px 0 5px;
+  }
+  .about-list{
+    padding-top: 25px;
+  }
+  .add-icon{
+    top: -10px;
+  }
+   /* Media query for screens with a width of 500px or less */
+   @media (max-width: 500px) {
+    table {
+        font-size: 11px;
+    }
+}
+  tr:nth-child(even) {
+    background-color: #bac3d1a1;/* Set the background color for even rows */
+    color: #000;/* Set the text color for even rows (optional) */
+}
+td{
+    padding: 0 10px;
+}
+</style>
+{% endblock head %}
+
+{% block content %}
+ <section class=" description"> <!-- s2 -->
+    <div id="description-page"  class=" container-xxl">
+        
+        <div class=" about-list edit-icon-h container">
+            <h1>{{ group.name }} Group Details</h1>
+            <div class="dev text-center">
+                <h2><hr style="margin: 0.5rem 0; border-top: 3px dashed black; background: none;"></h2>
+            </div>
+            {% if group.permissions.all %}
+                
+                <table>
+                    
+                    <thead>
+                        <tr>
+                            <th>
+                                    group name:
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>{{ group.name }}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>permissions:</th> 
+                        </tr>
+                        {% for permission in group.permissions.all %}
+                            <tr>
+                                <td>{{ permission.content_type.app_label }} | {{ permission.content_type.model }} | {{ permission.name }}</td>
+                            </tr>
+                        {% endfor %}
+                    <tbody>
+                </table>
+                <div class="edit-icon">
+                    <a href="{% url 'add_group' pk=group.id %}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </div>
+            {% else %}
+                <p>This group has no permissions.</p>
+                <div class="edit-icon">
+                    <a href="{% url 'add_group' pk=group.id  %}">
+                    <i class="bi bi-database-fill-add"></i>
+                    </a>
+                </div>
+            {% endif %}
+            <a href="{% url 'group_list' %}">Back to Group List</a>
+        </div>           
+    </div>
+    
+  </section>
+{% endblock content %}

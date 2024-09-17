@@ -1,39 +1,40 @@
 /* Dark Mode */
 [data-theme="dark"] {
-    --bg-color: #1e1e1e;
-    --odd-bg-color:#151010;
-    --even-bg-color:#494747;
-    --text-color: #fff;
-    --inverted-bg-color: #f5f5f5;
-    --inverted-text-color: #333;
-    --primary-color: #333; 
-    --box-shadow: rgba(120, 119, 119, 0.3);
-    --accent-color: #f4ca0e;
-    --accent-color-hover: #ffff00;
-    --icon-bg-color:#e3d189;
-    --font-size: 16px;
-    --line-height: 1.5;
-    --border-radius: 4px; 
-}
-
-/* Light Mode (default) */
-[data-theme="light"] {
-    --bg-color: #f5f5f5;
-    --odd-bg-color:#e9e3e3;
-    --even-bg-color:#c2c1c1;
-    --text-color: #333;
-    --inverted-bg-color: #1e1e1e;
-    --inverted-text-color: #fff;
-    --primary-color: #000;
-    --box-shadow: rgba(16, 15, 15, 0.3);
-    --accent-color: #f4ca0e;
-    --accent-color-hover: #ffff00;
-    --icon-bg-color:#e3d189;
-    --icon-bg-color-hover:#d1ac15;
+    --bg-color: #1e1e1e; /* Black */
+    --odd-bg-color: #151010; /* Darker shade of black */
+    --even-bg-color: #333; /* Darker shade of black */
+    --text-color: #fff; /* White */
+    --inverted-bg-color: #f5f5f5; /* White */
+    --inverted-text-color: #333; /* Black */
+    --primary-color: #000; /* Black */
+    --box-shadow: rgba(120, 119, 119, 0.3); /* Neutral shadow */
+    --accent-color: #009639; /* Green - Representing Kenya's natural resources */
+    --accent-color-hover: #00cc66; /* Lighter shade of green */
+    --icon-bg-color: #e3d189; /* Gold - Can be used as a neutral color */
     --font-size: 16px;
     --line-height: 1.5;
     --border-radius: 4px;
 }
+
+/* Light Mode (default) */
+[data-theme="light"] {
+    --bg-color: #fff; /* White */
+    --odd-bg-color: #e9e3e3; /* Lighter shade of white */
+    --even-bg-color: #c2c1c1; /* Light gray */
+    --text-color: #333; /* Black */
+    --inverted-bg-color: #1e1e1e; /* Black */
+    --inverted-text-color: #fff; /* White */
+    --primary-color: #000; /* Black */
+    --box-shadow: rgba(16, 15, 15, 0.3); /* Neutral shadow */
+    --accent-color: #009639; /* Green - Representing Kenya's natural resources */
+    --accent-color-hover: #00cc66; /* Lighter shade of green */
+    --icon-bg-color: #e3d189; /* Gold - Can be used as a neutral color */
+    --icon-bg-color-hover: #d1ac15; /* Lighter shade of gold */
+    --font-size: 16px;
+    --line-height: 1.5;
+    --border-radius: 4px;
+}
+
 
 
 #toggle-theme{

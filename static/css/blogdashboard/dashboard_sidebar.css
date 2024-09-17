@@ -1,0 +1,127 @@
+a {
+  text-decoration: none;
+}
+
+.fa-chart-line {
+  /* height: fit-content; */
+  /* background-color: #00c2e0; */
+  font-size: 40px;
+  color: rgb(87 179 17);
+  border-radius: 5px;
+}
+
+#main {
+  padding: 10px 5px;
+}
+
+/* IDEA: For the sidebar */
+.side__links {
+  /* transform: translate(0); */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  height: inherit;
+  width: 100%;
+  padding-top: 20px;
+  /* background: #c3c1c1; */
+  /* transform: translate(-250px); IDEA: To push sidebar off the page by default */
+  transition: transform 0.3s;
+}
+
+.side__link {
+  display: flex;
+  /* align-items: center; */
+  color: rgb(0,0,0);
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 12px 3px;
+  margin: 0 5px 20px 5px; /*top right bottom left  */
+  transition: transform 0.3s;
+  /* background-color: rgb(26 10 10 / 22%); */
+  /* border: 1px inset #f1dada; */
+  flex-wrap: wrap;
+}
+
+.side__link a {
+  margin-top: 10px;
+
+}
+
+/* IDEA: Putting spae btwn icons and text */
+.side__link>i, .side__link span .bi{
+  margin-right: 15px;
+}
+
+/* .side__link--active {
+  color: #fff;
+
+} */
+
+.side__link:hover {
+  transform: translate(20);
+  /* border: 1px outset #71797a; */
+  background: rgb(69 176 78 / 22%);
+  /* color: #bbe7de; */
+}
+
+/* DropDown  */
+/* .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+} */
+/* for dropdowns found in Nav_link */
+.side__links .dropdown-content {
+  width: 100%;
+
+}
+ /* for dropdowns found in Nav_link */
+ #side-bar .dropdown-btn {
+  display: block;
+  width: 100%;
+}
+
+#side-bar .dropdown {
+  position: relative;
+  /* display: inline-block;
+  width: 100%; */
+  
+}
+
+#side-bar .dropdown-content {
+  display: none;
+  position: relative;
+  /* right: 0; */
+  margin-top: 10px;
+  /* background-color: rgb(88 79 79 / 21%); */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+  
+}
+
+#side-bar .dropdown-content a {
+  color: rgb(255, 255, 255);
+  padding: 12px 5px;
+  text-decoration: none;
+  display: block;
+}
+
+#side-bar .dropdown-content a:hover {
+  background-color: rgb(161, 249, 174);
+  color: black;
+}
+
+#side-bar .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media (min-width:891px) {
+  .side__link.dropdown {
+    width: auto;
+  }
+}
+

@@ -1,0 +1,313 @@
+{% extends 'maindashboard/dashboard_base.html'  %}
+{% load static %}
+
+{% block head %}
+<title>Add Group</title>
+
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+
+<style>
+  select{
+    display: flex !important;
+    min-height: 200px;
+  }
+  .selector-chooser{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .selector-chooser li{
+    margin: 0 10px;
+    border-radius: 50px;
+    background-color: rgb(123 123 127 / 36%);
+  }
+  .selector-chooser li:hover{
+    background-color: rgb(17 17 18 / 36%);
+    
+  }
+  .selector-chooser li a{
+    color: white;
+  }
+  
+  .selector-chooser li a i{
+    display: flex;
+    font-size: 20px;
+    font-weight: bolder;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+  }
+  .selector-chooser .up:hover i{
+    transform: translateY(+7px);
+  }
+  .selector-chooser .down:hover i{
+    transform: translateY(-7px);
+  }
+
+  .transition-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+  } 
+
+    .selector-chooseall,
+    .selector-clearall {
+        transition: all 0.5s;
+    }
+
+    .selector-chooseall:hover i{
+        transform: translateX( +10px);
+    }
+</style>
+{% endblock head %}
+
+{% block content %}
+<!-- Write New Articles -->
+<section class="item2 section write-A-page">
+    <div class="write-a-c bg--white">
+        <div id="w-a-heading">
+            <h2> Add New Group & Permissions</h2>
+        </div>
+        <div id="w-a-body">
+            <form class="w-a-body" method="POST" {# action="{% url 'add_group' %}" #} id="group_form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="group-name">
+                    {{ form.as_p }} 
+                </div>
+                <div class="related-widget-wrapper" >
+                    <div class="selector">
+                        <div class="selector-available">
+                            <div class="help" id="id_permissions_helptext">
+                                <div>Hold down “Control”, or “Command” on a Mac, to select more than one.</div>
+                            </div>
+                            <h2>Available permissions 
+                            <span class="help help-tooltip help-icon" title="This is the list of available permissions. You may choose some by selecting them in the box below and then clicking the &quot;Choose&quot; arrow between the two boxes.">
+                    
+                            </span>
+                            </h2>
+                            <!-- <p id="id_permissions_filter" class="selector-filter">
+                            <label for="id_permissions_input">
+                                <span class="help-tooltip search-label-icon" title="Type into this box to filter down the list of available permissions."></span>
+                            </label> <input type="text" placeholder="Filter" id="id_permissions_input">
+                            </p> -->
+                            {{ permission_form.permissions }} 
+                            <!-- <select name="permissions" class="filtered" id="id_permissions" multiple="">
+                                <option value="29">account | email address | Can add email address</option>
+                                
+                                <option value="30">account | email address | Can change email address</option>
+                            </select>-->
+                            <div class="transition-container">
+                                <a title="Click to choose all permissions at once." href="#" id="id_permissions_add_all_link" class="selector-chooseall active">
+                                    Choose all
+                                    <i class="bi bi-chevron-double-right move-"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <ul class="selector-chooser">
+                            <li class="up">
+                                <a title="Add to choosen " href="#" id="id_permissions_add_link" class="selector-add">
+                                    <!-- Choose -->
+                                    <i class="bi bi-chevron-double-down"></i>
+                                </a>
+                            </li>
+                            <li class="down">
+                            <a title="Remove from choosen" href="#" id="id_permissions_remove_link" class="selector-remove">
+                                <!-- Remove -->
+                                <i class="bi bi-chevron-double-up"></i>
+                            </a>
+                            </li>
+                        </ul>
+                        <div id="id_permissions_selector_chosen" class="selector-chosen">
+                            <h2>Chosen permissions 
+                            <span class="help help-tooltip help-icon" title="This is the list of chosen permissions. You may remove some by selecting them in the box below and then clicking the &quot;Remove&quot; arrow between the two boxes.">
+                    
+                            </span>
+                            </h2>
+                            <!-- <p id="id_permissions_filter_selected" class="selector-filter">
+                            <label for="id_permissions_selected_input">
+                                <span class="help-tooltip search-label-icon" title="Type into this box to filter down the list of selected permissions.">
+                                </span>
+                            </label> 
+                            <input type="text" placeholder="Filter" id="id_permissions_selected_input">
+                            </p> -->
+                                {{ selectpermission_form.select_permissions }}  
+                            <!--<select name="select_permissions" class="filtered" multiple="" id="id_select_permissions">
+                                <option value="33">account | email confirmation | Can add email confirmation</option>
+                                <option value="34">account | email confirmation | Can change email confirmation</option>
+                                <option value="35">account | email confirmation | Can delete email confirmation</option>
+                                <option value="36">account | email confirmation | Can view email confirmation</option>
+                                <option value="5">admin | log entry | Can add log entry</option>
+                            </select>-->
+                            <div class="list-footer-display">
+                                <span id="id_permissions_list-footer-display-text">0 selected options not visible</span>
+                                <span class="list-footer-display__clear"> (click to clear)</span>
+                            </div>
+                        </div>
+                        <div class="transition-container">
+                            <a title="Click to remove all chosen permissions at once." href="#" id="id_permissions_remove_all_link" class="selector-clearall">
+                                <i class="bi bi-chevron-double-left move-"></i>
+                                Remove all
+                            </a>
+                        </div>
+
+                        <div class="button">
+                            <button type="submit" onclick="selectAllOptions()" >Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <script>
+                //== FOR SELECTING ALL OTIONS IN THE CHOOEN SELECT ELEMENT BEFORE SAVING THE FORM ===
+                function selectAllOptions() {
+                    var selectElement = document.getElementById("id_select_permissions");
+                    for (var i = 0; i < selectElement.options.length; i++) {
+                        selectElement.options[i].selected = true;
+                    }
+                }
+                //======== END OF SELECT ALL =========
+            
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Function to handle the visibility of "Choose" button
+                    function toggleChooseButtonVisibility() {
+                        var permissionsSelect = document.getElementById('id_permissions');
+                        var addButton = document.getElementById('id_permissions_add_link');
+            
+                        addButton.style.display = permissionsSelect.selectedOptions.length > 0 ? 'inline-block' : 'none';
+                    }
+            
+                    // Function to handle the visibility of "Remove" button
+                    function toggleRemoveButtonVisibility() {
+                        var selectedPermissionsSelect = document.getElementById('id_select_permissions');
+                        var removeButton = document.getElementById('id_permissions_remove_link');
+            
+                        removeButton.style.display = selectedPermissionsSelect.selectedOptions.length > 0 ? 'inline-block' : 'none';
+                    }
+                    
+                    // Function to handle the click on "Choose all" link
+                    document.getElementById('id_permissions_add_all_link').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        var permissionsSelect = document.getElementById('id_permissions');
+                        
+                        // Copy all options, not just the selected ones
+                        var allOptions = Array.from(permissionsSelect.options).map(option => {
+                            return {
+                                value: option.value,
+                                text: option.text
+                            };
+                        });
+                
+                        // Add options to the 'id_select_permissions' select element
+                        addToSelect('id_select_permissions', allOptions);
+                
+                        // Display count in 'id_permissions_list-footer-display-text'
+                        displayCount('id_permissions_list-footer-display-text');
+                        // Hide "Choose" button when no options are selected
+                        toggleChooseButtonVisibility();
+                    });
+                
+                    // Function to handle the click on "Choose" link
+                    document.getElementById('id_permissions_add_link').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        var permissionsSelect = document.getElementById('id_permissions');
+                        var selectedOptions = Array.from(permissionsSelect.selectedOptions).map(option => {
+                            return {
+                                value: option.value,
+                                text: option.text
+                            };
+                        });
+                        // Add options to the 'id_select_permissions' select element
+                        addToSelect('id_select_permissions', selectedOptions);
+                
+                        // Display count in 'id_permissions_list-footer-display-text'
+                        displayCount('id_permissions_list-footer-display-text');
+                        // Hide "Choose" button when no options are selected
+                        toggleChooseButtonVisibility();
+                    });
+                
+                    // Function to handle the click on "Remove" link
+                    document.getElementById('id_permissions_remove_link').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        var selectedPermissionsSelect = document.getElementById('id_select_permissions');
+                        var selectedOptions = Array.from(selectedPermissionsSelect.selectedOptions);
+                
+                        // Remove selected options from the 'id_select_permissions' select element
+                        selectedOptions.forEach(option => selectedPermissionsSelect.removeChild(option));
+                
+                        // Display count in 'id_permissions_list-footer-display-text'
+                        displayCount('id_permissions_list-footer-display-text');
+                        // Hide "Remove" button when no options are selected
+                        toggleRemoveButtonVisibility();
+                    });
+                
+                    // Function to handle the click on "Remove all" link
+                    document.getElementById('id_permissions_remove_all_link').addEventListener('click', function (event) {
+                        event.preventDefault();
+                        clearSelect('id_select_permissions');
+                
+                        // Display count in 'id_permissions_list-footer-display-text'
+                        displayCount('id_permissions_list-footer-display-text');
+                        // Hide "Remove" button when no options are selected
+                        toggleRemoveButtonVisibility();
+                    });
+                
+                    // Helper function to add options to a select element
+                    function addToSelect(selectId, options) {
+                        var targetSelect = document.getElementById(selectId);
+                        options.forEach(optionInfo => {
+                            // Check if the option with the same value already exists
+                            var existingOption = Array.from(targetSelect.options).find(opt => opt.value === optionInfo.value);
+                
+                            // If not, add the option
+                            if (!existingOption) {
+                                var option = document.createElement('option');
+                                option.value = optionInfo.value;
+                                option.text = optionInfo.text;
+                                targetSelect.add(option);
+                            }
+                        });
+                    }
+                
+                    // Helper function to clear all options from a select element
+                    function clearSelect(selectId) {
+                        var targetSelect = document.getElementById(selectId);
+                        while (targetSelect.options.length > 0) {
+                            targetSelect.remove(0);
+                        }
+                    }
+                
+                    // Helper function to display the count in a specified element
+                    function displayCount(elementId) {
+                        var selectedPermissionsSelect = document.getElementById('id_select_permissions');
+                        var count = selectedPermissionsSelect.options.length;
+                        document.getElementById(elementId).innerText = count + ' selected options not visible';
+                    }
+
+
+                    // Event listener for 'id_permissions' select element
+                    document.getElementById('id_permissions').addEventListener('change', function () {
+                        // Hide or show "Choose" button based on selection
+                        toggleChooseButtonVisibility();
+                    });
+            
+                    // Event listener for 'id_select_permissions' select element
+                    document.getElementById('id_select_permissions').addEventListener('change', function () {
+                        // Hide or show "Remove" button based on selection
+                        toggleRemoveButtonVisibility();
+                    });
+                    
+                    // Initial setup: Hide "Choose" button on page load
+                    toggleChooseButtonVisibility();
+            
+                    // Initial setup: Hide "Remove" button on page load
+                    toggleRemoveButtonVisibility();
+                });
+                
+            </script>
+             
+        </div><!-- end of ID w-a-body-->
+    </div><!-- End of Write-articles-->
+</section><!-- End Of Write Articles --> 
+    
+{% endblock content %} 

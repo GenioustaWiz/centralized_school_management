@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- {% load allauth i18n socialaccount %} -->
+
+{% block head %}
+<title>
+  {% trans "Signup" %}
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+<section class="s2 user_info ">
+  <div id="side-page" class="container">
+    <h1 class="brand" >
+      {% element span %}
+        {% trans "Sign Up" %}
+      {% endelement %}
+    </h1>
+    <div class="wrapper animated bounceInLeft">
+      
+      <div style="padding-top: 0;">
+        <div class="form-info">
+          <p>
+            Already have an account? Then please <a href="{% url 'login' %}">sign in</a>.
+          </p>
+          <div class="form">
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit">Sign Up</button>
+            </form>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

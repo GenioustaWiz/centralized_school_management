@@ -83,22 +83,20 @@
                     }
                 </script>
                 <!-- END OF SCRIPT-->
-                <a href="{% url 'blog:blog_home' %}">Blog</a>
-                {% comment %} <a href="{% url 'project_list' %}">Projects</a> {% endcomment %}
-                <a href="{% url 'contact' %}">Contact</a>
-                {% if request.user.is_authenticated %}
+                {% comment %}<a href="{% url 'blog:blog_home' %}">Blog</a>
+                 <a href="{% url 'project_list' %}">Projects</a> {% endcomment %}
+                <a href="#">Contact</a>
                     <div class="dropdown dashboard">
                         <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-layer-group"></i>
                             Dashboard
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'blog:dashboard_home' %}">Blog Dashboard</a></li>
-                            <li><a class="dropdown-item" href="{% url 'main_dashboard_home' %}">Main Dashboard</a></li>
+                            
+                            <li><a class="dropdown-item" href="{% url 'main_dashboard_home' %}">Dashboard</a></li>
+                            
                         </ul>
                     </div>
-                {% endif %}
-                
             </div>
         </div> 
         <div class="user nav-item dropdown dashboard">
@@ -120,7 +118,7 @@
                     <i class="fa-solid fa-right-from-bracket"></i>Logout</a>
             </div>
             {% else %}
-            <a href="{% url 'account_login' %}"> <span>SignIn</span> </a>
+            <a href="{% url 'custom_login' %}"> <span>SignIn</span> </a>
             {%endif %}
 
         </div> 
@@ -142,7 +140,7 @@
             <a href="javascript:void(0);" onclick="scrollToSection('#SERVICES')" class="nav__link">
                 <i class="fa-solid fa-truck-fast"></i>Services
             </a>
-            <a href="{% url 'blog:blog_home' %}" class="nav__link">
+            <a href="#" class="nav__link">
                 <i class="fa fa-blog"></i>
                 Blog
             </a>
@@ -161,7 +159,6 @@
                         Dashboard
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'blog:dashboard_home' %}">Blog Dashboard</a></li>
                         <li><a class="dropdown-item" href="{% url 'main_dashboard_home' %}">Main Dashboard</a></li>
                     </ul>
                 </div>
@@ -196,7 +193,10 @@
         
         {% block content %} {% endblock content %}
         <!-- ======== TopFooter ========= -->
-        {% include 'includes/topfooter.html' %} 
+        
+        {% comment %}
+            {% include 'includes/topfooter.html' %} 
+        {% endcomment %}
         <!-- ======== END TopFooter ========= -->
 
         <!-- SCROLL TO THE TOP OF PAGE-->

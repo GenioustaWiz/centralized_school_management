@@ -18,18 +18,19 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class UserManager(BaseUserManager):
 
-    def _create_user(self, email, password, is_staff, is_superuser, request=None, **extra_fields):
+    def _create_user(self, email, password, request=None, **extra_fields):
         if not email:
             raise ValueError('Users must have an email address')
         now = timezone.now()
         email = self.normalize_email(email)
-
+        
 
         user = self.model(
             email=email,
-            is_staff=is_staff,
+            # first_login=first_login,
+            # is_staff=is_staff,
             is_active=True,
-            is_superuser=is_superuser,
+            # is_superuser=is_superuser,
             last_login=now,
             date_joined=now,
             **extra_fields
@@ -48,16 +49,22 @@ class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('first_login', True)
+
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('first_login', False)
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
+        if extra_fields.get('first_login') is not False:
+            raise ValueError('Superuser must have first_login=False.')
+
 
         return self._create_user(email, password, **extra_fields)
 
@@ -65,7 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
-        ('O', 'Other'),
+       
     )
 
     USER_TYPES = (
@@ -86,6 +93,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
 
+    first_login = models.BooleanField(default=True)  
+    
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

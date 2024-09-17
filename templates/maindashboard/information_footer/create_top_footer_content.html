@@ -1,0 +1,136 @@
+{% extends 'maindashboard/dashboard_base.html' %}
+{% comment %} displays Write  {% endcomment %}
+
+{% load static %}
+
+{% block head %}
+<title> Blog List Page </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+<style>
+  select{
+    display: flex !important;
+  }
+    legend{
+        float: none;
+        text-align: center;
+    }
+    fieldset p, .formset-row{
+        margin: 10px 0;
+        border: 1px;
+        padding: 4px ;
+        border-style: dotted;
+    }
+    .fa{
+        color: red;
+    }
+</style>
+{% endblock head %}
+{% block content %} 
+ 
+
+<!-- Write New Articles -->
+<section class="item2 section write-A-page">
+  <div class="write-a-c bg--white">
+        <div id="w-a-heading">
+            <h2> Write New Footer Information</h2>
+            <h6 class="warning">
+                <i class="fa fa-solid fa-triangle-exclamation"></i>
+                Click the (<i class="fa bi bi-x-lg"></i>) button to remove the added content form.
+            </h6>
+        </div>
+        <div id="w-a-body">
+            <form class="w-a-body" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Enter Heading</legend>
+                    {{form_h.as_p}}
+                    {{ form_h.errors }}
+                </fieldset>
+
+                <fieldset>
+                    <legend>Enter Content Items</legend>
+                    <div id="content-item-formset">
+                        {{ content_item_formset.management_form }} {# Add the management form here #}
+                        {% for form in content_item_formset %}
+                        <div class="formset-row edit-icon-h">
+                            {{ form.id_for_label }}
+                            <table>
+                                {{ form.as_table }}
+                                {{ form.errors }}  
+                            </table>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="button" id="add-content-item">Click to Add Content</button>
+                </fieldset>
+                <div class="button">
+                    <button type="submit">Save</button>
+                </div>
+            </form>
+            
+            <script>
+                const contentItemFormset = document.getElementById('content-item-formset');
+                const addContentItemButton = document.getElementById('add-content-item');
+                let formIndex = {{ total_form_count|default:0 }}; // Initialize from the total form count
+            
+                addContentItemButton.addEventListener('click', () => {
+                    const newForm = document.createElement('div');
+                    newForm.classList.add('formset-row', 'edit-icon-h'); 
+            
+                    // Generate unique IDs and 'for' attributes
+                    const prefix = `content-${formIndex}-`;
+                    newForm.innerHTML = `
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th><label for="${prefix}content">Content:</label></th>
+                                    <td>
+                                        <input type="text" name="${prefix}content" value="default" maxlength="200" id="id_${prefix}content" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="${prefix}url">Url:</label></th>
+                                    <td>
+                                        <input type="text" name="${prefix}url" maxlength="1000" id="id_${prefix}url" ><!--required not set-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="${prefix}DELETE">Delete:</label></th>
+                                    <td>
+                                        <input type="checkbox" name="${prefix}DELETE" id="id_${prefix}DELETE">
+                                        <input type="hidden" name="${prefix}id" id="id_${prefix}id">
+                                        <input type="hidden" name="${prefix}heading" id="id_${prefix}heading">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+            
+                    const removeButton = document.createElement('div');
+                    removeButton.classList.add('remove', 'edit-icon');
+                    removeButton.innerHTML = `<i class="fa bi bi-x-lg"></i>`;
+                    removeButton.addEventListener('click', () => {
+                        // Remove the form on delete button click
+                        contentItemFormset.removeChild(newForm);
+                        formIndex--;
+            
+                        // Update the TOTAL_FORMS input field
+                        const totalFormsInput = document.getElementById('id_content-TOTAL_FORMS');
+                        totalFormsInput.value = formIndex;
+                    });
+            
+                    newForm.appendChild(removeButton);
+                    contentItemFormset.appendChild(newForm);
+                    formIndex++;
+            
+                    // Update the TOTAL_FORMS input field
+                    const totalFormsInput = document.getElementById('id_content-TOTAL_FORMS');
+                    totalFormsInput.value = formIndex; // to account for the newly added form
+                });
+            </script>
+        </div><!-- end of ID w-a-body-->
+    </div><!-- End of Write-articles-->
+</section><!-- End Of Write Articles --> 
+
+{% endblock content%}

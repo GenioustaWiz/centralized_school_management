@@ -1,0 +1,52 @@
+
+{% extends 'maindashboard/dashboard_base.html' %}
+{% comment %} displays Write  {% endcomment %}
+
+{% load static %}
+
+{% block head %}
+<title> Base Data </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+{% comment %} <link rel="stylesheet" href="{% static 'css/top-footer.css' %}" type="text/css"> {% endcomment %}
+<style>
+    .in-heading{
+        text-align: center;
+    }
+    
+   .fa-triangle-exclamation{
+        color: red;
+   }
+</style>
+{% endblock head %}
+{% block content %}
+ 
+<section class="item2 section write-A-page">
+    <div class="write-a-c bg--white">
+        <div id="w-a-heading">
+            <h2> Base Data</h2>
+            <h6 class="warning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Click the edit/add button to edit or save new Base Data information.
+            </h6>
+        </div>
+        <div class="content-body edit-icon-h">
+            {% if base_data %}
+                <div>
+                    <p><strong>Logo Name:</strong> {{ base_data.logo_name }}</p>
+                    <p><strong>Footer:</strong> {{ base_data.footer }}</p>
+                    <p><strong>Logo Image:</strong> <img src="{{ base_data.logo_img.url }}" alt="Logo"></p>
+                </div>
+            {% else %}
+                <p>No base data available.</p>
+            {% endif %}
+            <div class="edit-icon">
+                <a href="{% url 'edit_base_data' %}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content%}

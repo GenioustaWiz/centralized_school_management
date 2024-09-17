@@ -1,7 +1,0 @@
-
-SchoolEmplyees:
-    Flutter app makes HTTP requests to the /api/school_employees/ 
-    endpoint for creating and fetching SchoolEmployee data.
-
-
-    

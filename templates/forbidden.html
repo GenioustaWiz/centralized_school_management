@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %} 
+<title> 
+    FORBIDDEN
+</title>
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+
+{% endblock head %}
+
+{% block content %}
+
+<section class="s2 user_info ">
+    <div id="side-page" class="container" style="height: 89vh; ">
+        
+        <h1 class="brand">
+            <i class="bi bi-exclamation-triangle" style='color:red !important; font-size:40px;'></i>
+            <span style='color:red !important;'>FORBIDDEN</span>
+        </h1>
+        <div class="wrapper animated bounceInLeft ">
+            <div>
+                <p > 
+                    The Page you tried to access is Forbidden. contact the admin in order to be granted access! 
+                </p>
+            </div>
+        </div>
+    </div>  
+</section>
+{% endblock content %}

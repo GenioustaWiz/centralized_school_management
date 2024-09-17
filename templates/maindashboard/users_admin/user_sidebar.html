@@ -1,0 +1,74 @@
+<div class=" img-area">
+    <div class="profile-photo">
+      <a href="{{ profile.image.url }}">
+          <img src="{{ profile.image.url }}" alt="user-image" width="150" height="150" class="profile-pic rounded-circle">
+      </a>
+      <div class="info-">
+        <h5 class="account-heading">{{profile.username }} </h5>
+        <p class="text-secondary">{{ profile.email }}</p>
+        {% if profile.groups.exists %}
+                {% for group in profile.groups.all %}
+                <p class="text-secondary">{{ group.name }}</p>
+                {% endfor %}
+        {% else %}
+            <p class="text-secondary">No groups assigned</p>
+        {% endif %}
+      </div>
+      <div class="select-">
+        <ul>
+          <li>
+            <a href="{% url 'user_detail' user_id=profile.id %}" id="p-i">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="#activites" id="e-p">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <span>Recent Activities</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'user_edit' user_id=profile.id %}" id="a-">
+              <i class="fa fa-solid fa-pen-to-square"></i>
+              <span>Edit Profile</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="  socialMedia-area">
+      <ul>
+        <li>
+          <a href="{{profile.github}}" class="github">
+            <i class="fa fa-brands fa-github"></i>
+            <span> Github</span>
+            <!-- <span class="sm-names"> Github name</span> -->
+          </a>
+        </li>
+
+
+        <li>
+          <a href="{{profile.googleplus}}">
+            <i class="fa fa-brands fa-google-plus-g"></i>
+            <span> Google+</span>
+            <!-- <span class="sm-names"> Google name</span> -->
+          </a>
+        </li>
+        <li>
+          <a href="{{profile.instagram}}">
+            <i class="fa fa-brands fa-instagram"></i>
+            <span> Instagram</span>
+            <!-- <span class="sm-names"> Instagram name</span> -->
+          </a>
+          <li>
+            <a href="{{profile.facebook}}">
+              <i class="fa fa-brands fa-facebook"></i>
+              <span> Facebook</span>
+              <!-- <span class="sm-names"> Instagram name</span> -->
+            </a>
+        </li>
+      </ul>
+    </div>
+</div>

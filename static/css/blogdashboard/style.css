@@ -1,0 +1,104 @@
+/*.bg--white.item{
+    border: 3px solid red;
+   
+    padding-bottom: 10px;
+  }
+  .item2{
+    border: 3px solid #371d1d;
+  }*/
+  body{
+    margin: 0;
+    background-color: #e9ebee;
+    --header-height: 50px;
+    margin: var(--header-height) 0 0 0;
+    font-family: sans-serif;
+    cursor: default;
+  }
+  .preload * { /* IDEA: this is to stop the side navbar from
+     appeating and disappearing fast when page is refreshed */
+    transition: none !important;
+  }
+
+  ol, ul{
+    list-style: none;
+    padding: 0;
+  }
+  
+  a{
+    text-decoration: none;
+  }
+  .body-container {
+    display: grid;
+  }
+  .bg--white{
+    background-color: white;
+  }
+  .bg-l-grey{
+    background-color: #F6F7FB;
+  }
+  #popupMessage {
+    z-index: 500;
+  }
+
+  /* <<<<<<---------Screen */
+
+@media (max-width: 888px) {
+  #side-bar, #hide-button{
+    display: none;
+  }
+  .body-container {
+    grid-template-columns: 1fr;
+    /* gap: 20px; */
+  }
+
+}
+/* Screen------>>>>>>> */
+
+@media (min-width:888px) {
+  #side-bar.hidden {
+    transform: translateX(-250px);
+  }
+  #hide-button{
+    display: flex;
+    position: fixed;
+    top: 50px;
+    width: 17px;
+    height: 95%;
+    border: none;
+    padding-left: 4px;
+    /* border-right: 1px solid black; */
+    border-image: initial;
+    background-color: rgb(157 189 105);
+    color: rgb(12 10 10);
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .body-container {
+    /* grid-template-rows: 50px calc(98vh - 50px); */
+    grid-template-columns: 250px auto;
+    grid-template-areas:
+        'sidebar main';
+    grid-gap: 10px;
+    margin-left: 18px;
+  }
+  .body-container--hide{
+    grid-template-columns: auto !important;
+    grid-template-areas:
+        'main' !important;
+  }
+  
+  #side-bar {
+    grid-area: sidebar;
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    /* transition: transform 0.5s; */
+  }
+  #main{
+    grid-area: main;
+  }
+}

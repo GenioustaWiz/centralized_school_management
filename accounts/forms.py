@@ -1,12 +1,10 @@
-# from turtle import textinput
+# # from turtle import textinput
 from django import forms
 from django.forms import ModelForm, TextInput, EmailInput
-from accounts.models import User
-from django.contrib.auth.forms import UserCreationForm
-from phonenumber_field.formfields import PhoneNumberField
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
-from django_countries.fields import CountryField
-from django_countries.widgets import CountrySelectWidget
+# from accounts.models import User
+# from django.contrib.auth.forms import UserCreationForm
+# from phonenumber_field.formfields import PhoneNumberField
+# from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 # class loginpage(forms.Form):
 #     username = forms.CharField(max_length=63)
@@ -21,35 +19,38 @@ from django_countries.widgets import CountrySelectWidget
 
 # Create a UserUpdateForm to update username and email
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField() 
+    # email = forms.EmailField() 
 
-    class Meta:
-        model = User
-        fields = [ 'first_name', 'last_name', 'email', 'username',]
-        widgets = {
-            'email': EmailInput(attrs={
-                'class': "email", 
-                'placeholder': 'Email'
-                })
-        }
+    # class Meta:
+    #     model = User
+    #     fields = [ 'first_name', 'last_name', 'email', 'username',]
+    #     widgets = {
+    #         'email': EmailInput(attrs={
+    #             'class': "email", 
+    #             'placeholder': 'Email'
+    #             })
+    #     }
+    pass
 
 class ProfileUpdateForm_c(forms.ModelForm):
-    phone_number = PhoneNumberField(
-            widget=PhoneNumberPrefixWidget(initial='KE', attrs={'class': 'p-no'})
-        ) 
-    class Meta:
-        model = User
-        fields = ['phone_number','country']
+    # phone_number = PhoneNumberField(
+    #         widget=PhoneNumberPrefixWidget(initial='KE', attrs={'class': 'p-no'})
+    #     ) 
+    # class Meta:
+    #     model = User
+    #     fields = ['phone_number','country']
+    pass
 # Create a ProfileUpdateForm to update image
 class ProfileUpdateForm(forms.ModelForm):
     
-    class Meta:
-        model = User
-        fields = ['gender','image','github','facebook','googleplus','instagram', ]
-           
+    # class Meta:
+    #     model = User
+    #     fields = ['gender','image','github','facebook','googleplus','instagram', ]
+    pass
     
 # Create a ProfileUpdateForm to update image
 class ProfileUpdateForm_desc(forms.ModelForm):
-    class Meta:
-        model = User
-        fields =['desc']
+    # class Meta:
+    #     model = User
+    #     fields =['desc']
+    pass

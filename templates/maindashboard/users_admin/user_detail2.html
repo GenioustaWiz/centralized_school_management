@@ -1,0 +1,119 @@
+{% extends 'maindashboard/dashboard_base.html'  %}
+{% load static %}
+
+{% block head %}
+<title>Profile View</title>
+<link rel="stylesheet" href="{% static 'css/users/profile_home.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+{% endblock head %}
+
+{% block content %}
+<section class="s2 profile">
+  <div class=" profile-main  container-xl">
+    
+    {% include 'maindashboard/users_admin/user_sidebar.html' %}
+    
+    <section id="profile-info">
+      <div class=" info-area container-xl">
+        <div class=" info-area-s">
+          <div class="user-details">
+            <ul>
+                {% for field, value in profile_data.items %}
+              <li style=" margin-top: 10px; ">
+                <i class=" U-fixed-details">{{ field }} </i>
+                <span class="U-valiable-details">{{ value }}</span>
+              </li>
+              <hr class="hr-dashed">
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="current-projects">
+            <div class="current-areas">
+              <div class="current-no">
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="current-areas">
+              <div>
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="current-areas">
+              <div>
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="current-areas">
+              <div>
+                <p>35</p>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <h6>Elvis Website</h6>
+                  </li>
+                  <li>
+                    <i>Started:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                  <li>
+                    <i>Deadline:</i>
+                    <span>15 July 2021</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+</section>
+{% endblock content %}

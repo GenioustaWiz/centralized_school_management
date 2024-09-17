@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% providers_media_js %}
+
+{% block head %}
+<title> 
+  Home
+</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
+
+<style>
+ 
+</style>
+{% endblock head %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+  <!-- Content for logged-in users -->
+  <section class="s2 user_info">
+    <div class="container">
+      <h1>Welcome, {{ user_info.email }}!</h1>
+      <p>You are logged in.</p>
+      <!-- Add more content for logged-in users here -->
+    </div>
+  </section>
+{% else %}
+  <!-- Content for users not logged in -->
+  <section class="s1 login-button">
+    <div>
+        <p>
+            PLease Login first, so that you can get access to your Account
+            <a href="{% url 'account_login' %}">
+            SIGN IN
+            </a>.
+        </p>
+    </div>
+  </section>
+{% endif %}
+
+{% endblock content %}
