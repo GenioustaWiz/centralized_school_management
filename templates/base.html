@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="{% static 'images/web_tab_image/PnP_Auto_Icon.jpg' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/web_tab_image/book-icon.png' %}">
     
     <title> </title>
     {% block head %} {% endblock head %}
@@ -72,31 +72,34 @@
         <div id="navbar_d">
             <div id="links">
                 <a href="{% url 'main_index' %}">Home</a>
-                <a href="javascript:void(0);" onclick="scrollToSection('#ABOUT')">About</a>
+                <!-- <a href="javascript:void(0);" onclick="scrollToSection('#ABOUT')">About</a>
                 <a href="javascript:void(0);" onclick="scrollToSection('#SERVICES')">Services</a>
-                <!--SCRIPT FO OPENING THE MAIN_INDEX 
+                SCRIPT FO OPENING THE MAIN_INDEX 
                     AND THE SELECTING THE SECTION BELONGING 
-                    TO THE id THAT WAS CLICKED-->
+                    TO THE id THAT WAS CLICKED
                 <script>
                     function scrollToSection(sectionId) {
                         window.location.href = "{% url 'main_index' %}" + sectionId;
                     }
-                </script>
+                </script> -->
                 <!-- END OF SCRIPT-->
-                {% comment %}<a href="{% url 'blog:blog_home' %}">Blog</a>
-                 <a href="{% url 'project_list' %}">Projects</a> {% endcomment %}
-                <a href="#">Contact</a>
-                    <div class="dropdown dashboard">
-                        <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-layer-group"></i>
-                            Dashboard
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            
-                            <li><a class="dropdown-item" href="{% url 'main_dashboard_home' %}">Dashboard</a></li>
-                            
-                        </ul>
-                    </div>
+                {% comment %}<a href="{% url 'blog:blog_home' %}">Blog</a>{% endcomment %}
+                <a href="{% url 'parent_detail' %}">Your Dashboard</a> 
+                <!-- <a href="#">Contact</a> -->
+                <!-- Check if user is an Admin, if not do not Display Dashboard -->
+                {% if request.user.user_type in 'master_admin,  lead_admin, data_admin' %}
+                <div class="dropdownFdashboard">
+                    <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-layer-group"></i>
+                        Dashboard
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        
+                        <li><a class="dropdown-item" href="{% url 'main_dashboard_home' %}">Dashboard</a></li>
+                        
+                    </ul>
+                </div>
+                {%endif%}
             </div>
         </div> 
         <div class="user nav-item dropdown dashboard">

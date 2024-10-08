@@ -12,43 +12,43 @@ from students.serializers.student_dashboard_s import StudentSerializer, Attendan
 
 @login_required
 def student_dashboard(request, pk=None):
-    #check if the user is authenticated
-    if request.user.is_authenticated:
-        # check the user's type, for access limitations
-        if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/student/student_dashboard.html'
-        else:
-            template_name = 'student/student_dashboard.html'
+    user = request.user
 
-        student = get_object_or_404(Student, pk=pk)
-            
-        # Fetch attendance data
-        attendance_data = Attendance.objects.filter(student=student).values('status').annotate(value=Count('status'))
-        
-        # Fetch performance data
-        performance_data = Performance.objects.filter(student=student).values('subject', 'grade')
-        
-        # Fetch recent attendance
-        recent_attendance = Attendance.objects.filter(
-            student=student,
-            date__gte=timezone.now().date() - timedelta(days=30)
-        ).order_by('-date')[:5]
+    # check the user's type, for access limitations
+    if user.is_superuser or user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
+        template_name = 'maindashboard/student/student_dashboard.html'
+    elif user.user_type == 'parent':
+        template_name = 'student/student_dashboard.html'
 
-        # Fetch recent performance
-        recent_performance = Performance.objects.filter(
-            student=student,
-            assessment_date__gte=timezone.now().date() - timedelta(days=30)
-        ).order_by('-assessment_date')[:5]
+    student = get_object_or_404(Student, pk=pk)
         
-        context = {
-            'student': student,
-            'attendance_data': list(attendance_data),
-            'performance_data': list(performance_data),
-            'recent_attendance': recent_attendance,
-            'recent_performance': recent_performance,
-        }
-        
-        return render(request, template_name, context)
+    # Fetch attendance data
+    attendance_data = Attendance.objects.filter(student=student).values('status').annotate(value=Count('status'))
+    
+    # Fetch performance data
+    performance_data = Performance.objects.filter(student=student).values('subject', 'grade')
+    
+    # Fetch recent attendance
+    recent_attendance = Attendance.objects.filter(
+        student=student,
+        date__gte=timezone.now().date() - timedelta(days=30)
+    ).order_by('-date')[:5]
+
+    # Fetch recent performance
+    recent_performance = Performance.objects.filter(
+        student=student,
+        assessment_date__gte=timezone.now().date() - timedelta(days=30)
+    ).order_by('-assessment_date')[:5]
+    
+    context = {
+        'student': student,
+        'attendance_data': list(attendance_data),
+        'performance_data': list(performance_data),
+        'recent_attendance': recent_attendance,
+        'recent_performance': recent_performance,
+    }
+    
+    return render(request, template_name, context)
 
 # ======================== APIView ==============================
 class StudentDashboardAPIView(APIView):

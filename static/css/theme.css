@@ -1,19 +1,22 @@
 /* Dark Mode */
 [data-theme="dark"] {
-    --bg-color: #1e1e1e; /* Black */
+    --bg-color: #252424; /* Black */
+    --light-bg-color: #414040;
     --odd-bg-color: #151010; /* Darker shade of black */
     --even-bg-color: #333; /* Darker shade of black */
+    --even-odd-bg-color: #4b4c4f;
     --text-color: #fff; /* White */
     --inverted-bg-color: #f5f5f5; /* White */
     --inverted-text-color: #333; /* Black */
     --primary-color: #000; /* Black */
     --box-shadow: rgba(120, 119, 119, 0.3); /* Neutral shadow */
-    --accent-color: #009639; /* Green - Representing Kenya's natural resources */
-    --accent-color-hover: #00cc66; /* Lighter shade of green */
-    --icon-bg-color: #e3d189; /* Gold - Can be used as a neutral color */
+    --accent-color: #4285f4; /* Blue from original CSS */
+    --accent-color-hover: #5a9bf4; /* Lighter shade of blue for hover */
+    --icon-bg-color: #f8f9fa; /* Light neutral color */
+    --icon-bg-color-hover: #e0e4e9; /* Hover for icons */
     --font-size: 16px;
     --line-height: 1.5;
-    --border-radius: 4px;
+    --border-radius: 8px; /* Match the rounded buttons */
 }
 
 /* Light Mode (default) */
@@ -21,18 +24,19 @@
     --bg-color: #fff; /* White */
     --odd-bg-color: #e9e3e3; /* Lighter shade of white */
     --even-bg-color: #c2c1c1; /* Light gray */
+    --even-odd-bg-color:  #e6e9f1;
     --text-color: #333; /* Black */
     --inverted-bg-color: #1e1e1e; /* Black */
     --inverted-text-color: #fff; /* White */
     --primary-color: #000; /* Black */
     --box-shadow: rgba(16, 15, 15, 0.3); /* Neutral shadow */
-    --accent-color: #009639; /* Green - Representing Kenya's natural resources */
-    --accent-color-hover: #00cc66; /* Lighter shade of green */
-    --icon-bg-color: #e3d189; /* Gold - Can be used as a neutral color */
-    --icon-bg-color-hover: #d1ac15; /* Lighter shade of gold */
+    --accent-color: #4285f4; /* Blue from original CSS */
+    --accent-color-hover: #5a9bf4; /* Lighter shade of blue for hover */
+    --icon-bg-color: #f8f9fa; /* Light neutral color */
+    --icon-bg-color-hover: #e0e4e9; /* Hover for icons */
     --font-size: 16px;
     --line-height: 1.5;
-    --border-radius: 4px;
+    --border-radius: 8px; /* Match the rounded buttons */
 }
 
 

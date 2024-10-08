@@ -10,38 +10,144 @@
 </title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/users/login.css' %}" type="text/css">
-
-<link rel="stylesheet" href="{% static 'css/contact.css' %}" type="text/css">
 
 <style>
- 
+  .login-btn, .learn-more-btn, .register-btn {
+      background-color: white;
+      color: var(--accent-color);
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+  }
+  .login-btn:hover, .learn-more-btn:hover, .register-btn:hover {
+      background-color: var(--accent-color-hover);
+  }
+  .hero {
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      padding: 100px 50px;
+      text-align: center;
+  }
+  .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+  }
+  .hero p {
+      font-size: 24px;
+      margin-bottom: 30px;
+  }
+  section {
+      padding: 50px;
+  }
+  h2 {
+      text-align: center;
+      margin-bottom: 30px;
+  }
+  .features, .reasons {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+  }
+  .feature, .reason {
+      flex-basis: 22%;
+      background-color:  var(--even-bg-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+  }
+  .school-dropout{
+    background-color: var(--even-odd-bg-color) ;
+  }
+  .icon {
+      font-size: 48px;
+      color: var(--accent-color);
+  }
+  .percentage {
+      font-size: 36px;
+      font-weight: bold;
+      color: var(--accent-color);
+  }
+  .cta {
+      background-color: var(--accent-color);
+      color: white;
+      text-align: center;
+      padding: 80px 0;
+  }
+  .cta h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+  }
+  .cta p {
+      font-size: 18px;
+      margin-bottom: 30px;
+  }
 </style>
 {% endblock head %}
 
 {% block content %}
 
-{% if user.is_authenticated %}
-  <!-- Content for logged-in users -->
-  <section class="s2 user_info">
-    <div class="container">
-      <h1>Welcome, {{ user_info.email }}!</h1>
-      <p>You are logged in.</p>
-      <!-- Add more content for logged-in users here -->
-    </div>
-  </section>
-{% else %}
-  <!-- Content for users not logged in -->
-  <section class="s1 login-button">
-    <div>
-        <p>
-            PLease Login first, so that you can get access to your Account
-            <a href="{% url 'account_login' %}">
-            SIGN IN
-            </a>.
-        </p>
-    </div>
-  </section>
-{% endif %}
+<section class="hero">
+  <h1>Empowering Education in Kenya</h1>
+  <p>A centralized school management system to improve student performance and engagement</p>
+  <a href="#" class="learn-more-btn">Learn More</a>
+</section>
+
+<section class="key-features">
+  <h2>Key Features</h2>
+  <div class="features">
+      <div class="feature">
+          <div class="icon">🎓</div>
+          <h3>Improved Academic Performance</h3>
+          <p>Track and enhance student progress through data-driven insights</p>
+      </div>
+      <div class="feature">
+          <div class="icon">👥</div>
+          <h3>Enhanced Communication</h3>
+          <p>Connect teachers, parents, and students for better collaboration</p>
+      </div>
+      <div class="feature">
+          <div class="icon">📊</div>
+          <h3>Comprehensive Data Analysis</h3>
+          <p>Gather and analyze education data to inform policy decisions</p>
+      </div>
+      <div class="feature">
+          <div class="icon">💬</div>
+          <h3>Parental Engagement</h3>
+          <p>Increase parental involvement in their children's education</p>
+      </div>
+  </div>
+</section>
+
+<section class="school-dropout">
+  <h2>Reasons for School Dropout</h2>
+  <div class="reasons">
+      <div class="reason">
+          <div class="percentage">35%</div>
+          <p>Financial Constraints</p>
+      </div>
+      <div class="reason">
+          <div class="percentage">20%</div>
+          <p>Distance to School</p>
+      </div>
+      <div class="reason">
+          <div class="percentage">15%</div>
+          <p>Early Marriage/Pregnancy</p>
+      </div>
+      <div class="reason">
+          <div class="percentage">10%</div>
+          <p>Lack of Parental Support</p>
+      </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Join Us in Transforming Education</h2>
+  <p>Register your school today and be part of the change</p>
+  <a href="#" class="register-btn">Register Now</a>
+</section>
 
 {% endblock content %}

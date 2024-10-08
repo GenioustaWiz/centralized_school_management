@@ -1,10 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block head %}
     <title>Student Dashboard - {{ student.first_name }} {{ student.last_name }}</title>
+    <link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <style>
         .dashboard {
@@ -13,28 +14,30 @@
             gap: 20px;
         }
         .card {
-            background: #fff;
+            background: var(--light-bg-color) !important;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             padding: 20px;
             margin-bottom: 20px;
         }
         .card h2 {
             margin-top: 0;
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid #f5c6cb;
             padding-bottom: 10px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
+            
+            color: var(--text-color);
         }
         th, td {
             text-align: left;
             padding: 8px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #f5c6cb;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: var(--bg-color);
         }
         .chart-container {
             position: relative;
@@ -52,9 +55,11 @@
         .badge-Late { background-color: #FFC107; color: black; }
         .badge-Excused { background-color: #2196F3; color: white; }
     </style>
-</head>
-<body>
-    <h1>Student Dashboard - {{ student.first_name }} {{ student.last_name }}</h1>
+{% endblock head %}
+
+{% block content %}
+<section>
+    <h1 class="text-center">Student Dashboard - {{ student.first_name }} {{ student.last_name }}</h1>
     
     <div class="dashboard">
         <div class="card">
@@ -174,5 +179,5 @@
             }
         });
     </script>
-</body>
-</html>
+</section>
+{% endblock content %}

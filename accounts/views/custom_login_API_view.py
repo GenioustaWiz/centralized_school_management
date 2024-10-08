@@ -43,7 +43,12 @@ class CustomLoginAPIView(APIView):
                         else:
                             # Normal login process
                             login(request, user)
-                            return Response({'detail': 'Login successful'}, status=status.HTTP_200_OK)
+                            # Send back user_type in the response
+                            user_type = user.user_type  # Assuming user has a `user_type` field
+                            return Response({
+                                'detail': 'Login successful',
+                                'user_type': user_type  # Include user_type in response
+                            }, status=status.HTTP_200_OK)
                     else:
                         return Response({'detail': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
                 else:

@@ -37,9 +37,9 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 
-ALLOWED_HOSTS = ['.ngrok-free.app', 'localhost', '192.168.176.182']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.176.182']
 
-CSRF_TRUSTED_ORIGINS = ["https://34fc-41-90-70-89.ngrok-free.app", 'http://192.168.176.182:8000/']
+CSRF_TRUSTED_ORIGINS = ['http://192.168.176.182:8000/']
 
 
 # Application definition

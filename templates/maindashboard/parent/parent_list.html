@@ -52,7 +52,7 @@
             <tbody>
                 {% for parent in parents %}
                 <tr>
-                    <td><a href="{% url 'parent_detail' parent.id %}">{{ parent.user.first_name }}</a></td>
+                    <td><a href="{% url 'parent_A_detail' parent.id %}">{{ parent.user.first_name }}</a></td>
                     <td>{{ parent.user.email }}</td>
                     <td>{{ parent.user.phone_number }}</td>
                     

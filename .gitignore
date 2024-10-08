@@ -2,5 +2,6 @@
 /.env
 /structure.txt
 /NOTES.txt
-
+/waste.md
 /important_local_api_access
+/tests

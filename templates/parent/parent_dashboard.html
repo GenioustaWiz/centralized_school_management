@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title> 
+  Dasboard
+</title>
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<style>
+    
+    .student-card {
+        background-color: var(--light-bg-color);
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+    .student-card h2{
+        font-weight: 800;
+        font-size: 25px;
+    }
+    .chart-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .canva-card {
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        width: 100%;
+        margin: 10px;
+    }
+    /* =========== Warnings =============== */
+    .warning-message {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    .error-message {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock head %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <h1>Parent Dashboard</h1>
+            {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+
+            {% if warning_message %}
+                <div class="warning-message">{{ warning_message }}</div>
+            {% endif %}
+            <div id="studentData"></div>
+        </div>
+        <script>
+            const studentData = JSON.parse('{{ student_data_json|safe }}');
+            
+            function createStudentCard(data) {
+                const card = document.createElement('a');
+                card.className = 'student-card';
+                // Dynamically set the href using the actual student_id from data
+                card.href = `/student/dashboard/${data.student_id}/`;
+    
+                card.innerHTML = `
+                    <div class="student--card">
+                        <h2 class="text-center">${data.student}</h2>
+                        <p>Daily Attendance: ${data.daily_attendance}</p>
+                        <p>Overall Performance: ${typeof data.overall_performance === 'number' ? data.overall_performance.toFixed(2) : data.overall_performance}</p>
+                        <div class="chart-container">
+                            <div class="canva-card">
+                                <canvas id="attendance-chart-${data.student.replace(' ', '-')}"></canvas>
+                            </div>
+                            <div class="canva-card">
+                                <canvas id="performance-chart-${data.student.replace(' ', '-')}"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                `;
+    
+                document.getElementById('studentData').appendChild(card);
+                
+                // Create Attendance Chart
+                const attendanceCtx = document.getElementById(`attendance-chart-${data.student.replace(' ', '-')}`).getContext('2d');
+                new Chart(attendanceCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.weekly_attendance.map(item => item.status),
+                        datasets: [{
+                            label: 'Weekly Attendance',
+                            data: data.weekly_attendance.map(item => item.value),
+                            backgroundColor: ['#4CAF50', '#F44336', '#FFC107', '#2196F3'],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
+    
+                // Create Performance Chart
+                const performanceCtx = document.getElementById(`performance-chart-${data.student.replace(' ', '-')}`).getContext('2d');
+                new Chart(performanceCtx, {
+                    type: 'line',
+                    data: {
+                        labels: data.monthly_performance.map(item => new Date(item.assessment_date).toLocaleDateString()),
+                        datasets: [{
+                            label: 'Monthly Performance',
+                            data: data.monthly_performance.map(item => item.grade),
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            }
+    
+            studentData.forEach(createStudentCard);
+        </script>
+    </section>
+{% endblock content %}
