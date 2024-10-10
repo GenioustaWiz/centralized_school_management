@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block head %}
-<title> Add or Edit Parents </title>
+<title> {{title}} </title>
 {{form.media}}
 <link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
 <style>
@@ -18,12 +18,13 @@
 <section class="item2 section write-A-page">
   <div class="write-a-c bg--white">
         <div id="w-a-heading">
-            <h2> Parent Entry Form</h2>
+            <h2> {{title}} </h2>
         </div>
         <div id="w-a-body">
             <form class="w-a-body" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ user_form.as_p }}
+                {{ parent_form.as_p }}
                 <div class="button">
                     <button type="submit">Submit</button>
                 </div>

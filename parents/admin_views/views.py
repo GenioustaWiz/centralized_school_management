@@ -38,4 +38,4 @@ def parent_A_detail(request, pk=None):
     
     parent = get_object_or_404(Parent, pk=pk) 
     context = { 'parent': parent, } 
-    return render(request, template_name, context)
+    return render(request, template_name, context) 

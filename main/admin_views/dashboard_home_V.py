@@ -10,7 +10,7 @@ from accounts.models import User   # Import the User model if not already import
 from django.shortcuts import render
 
 from parents.models import Parent
-from schools.models import School 
+from schools.models.models import School 
 # from visitors_counter.models import Visit
 @login_required
 def main_dashboard_home(request):

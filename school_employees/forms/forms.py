@@ -3,7 +3,7 @@
 from django import forms
 from .models import SchoolEmployee
 from accounts.models import User
-from schools.models import School
+from schools.models.models import School
 
 class SchoolEmployeeForm(forms.ModelForm):
     user = forms.ModelChoiceField(queryset=User.objects.all(), required=True)

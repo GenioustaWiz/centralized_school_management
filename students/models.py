@@ -5,7 +5,7 @@ from django.utils.crypto import get_random_string
 from django.db.models import Sum, Count
 from phonenumber_field.modelfields import PhoneNumberField
 
-from schools.models import School
+from schools.models.models import School
 from parents.models import Parent
 
 class Student(models.Model):

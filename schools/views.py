@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
-from schools.models import School
+from schools.models.models import School
 from accounts.models import User  
 
 def school_list(request):

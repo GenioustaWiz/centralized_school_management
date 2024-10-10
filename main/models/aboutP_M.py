@@ -5,7 +5,7 @@ from accounts.models import User
 from tinymce.models import HTMLField
 from PIL import Image
 desc = 'Please write the description here'
-class AboutPage(models.Model):
+class AboutPage(models.Model): 
     heading = models.CharField(default='default', max_length=100, null=False)
     body = HTMLField('Content')
 

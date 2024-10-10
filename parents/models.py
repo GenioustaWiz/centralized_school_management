@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Sum, Count
 
 from accounts.models import User
-from schools.models import School
+from schools.models.models import School
 
 class Parent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

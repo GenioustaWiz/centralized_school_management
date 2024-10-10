@@ -56,20 +56,24 @@
             <i class="fa-solid fa-bars"></i>
         </button>
         <div id="logo">
-            <a href="{% url 'main_index' %}">
+            <a href="{% url 'main_index' %}" style="color: none;">
                 <!-- <i>
                     <img src="{{BaseData.logo_img.url}}" width="40" height="40" class="rounded-circle" alt="Avatar">
                 </i> -->
                 <span class="logo">
-                    <img src="{{BaseData.logo_img.url}}" width="180" height="40" alt="{{BaseData.logo_name}}">
-                    <!-- {{BaseData.logo_name}} 
-                    P <span>&</span>P Auto-->
+                    
+                    {% comment %}
+                     <img src="{{BaseData.logo_img.url}}" width="180" height="40" alt="{{BaseData.logo_name}}">
+                     {{BaseData.logo_name}}   
+                    {% endcomment %}
+                    <!-- Ed<span>uBri</span>dge -->
+                    EduBridge Kenya
                 </span>
             </a>
         </div>
         {% comment %} <button id="theme-toggle">Toggle Dark/Light Mode</button> {% endcomment %}
 
-        <div id="navbar_d">
+        <div id="navbar_d">  
             <div id="links">
                 <a href="{% url 'main_index' %}">Home</a>
                 <!-- <a href="javascript:void(0);" onclick="scrollToSection('#ABOUT')">About</a>

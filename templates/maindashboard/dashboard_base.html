@@ -45,8 +45,6 @@
         </button>
         <div id="logo">
             <div class="logo">
-                {% comment %} cdt
-                <span>blog</span> {% endcomment %}
                 <a href="{% url 'main_dashboard_home' %}">main dashboard</a>
             </div>
         </div>
@@ -116,6 +114,24 @@
                     Company Contact Infor
                 </a>
             {% endcomment %}
+            <!-- ==== Add education Level, and Stage ======= -->
+            <div class="nav__link dropdown">
+                <span class="dropdown-btn" aria-expanded="false">
+                    <i class="bi bi-person-lines-fill"></i>
+                        Education<span style="padding-left: 2px;">&darr;</span>
+                </span>
+                <div class="dropdown-content">
+                    <a href="{% url 'education_stage_list' %}">
+                        <i class="bi bi-pencil-fill"></i>
+                        Education Stage
+                    </a>
+                    <a href="{% url 'education_level_list' %}">
+                        <i class="bi bi-pencil-square"></i>
+                           Education Level
+                    </a>
+                </div>
+            </div>
+             <!-- ========== END =========== -->
             <!-- School -->
             <div class="nav__link dropdown">
                 <span class="dropdown-btn" aria-expanded="false">
@@ -127,7 +143,7 @@
                         <i class="bi bi-pencil-fill"></i>
                         Schools
                     </a>
-                    <a href="{% url 'edit_add_school' %}">
+                    <a href="{% url 'school_create' %}">
                         <i class="bi bi-pencil-square"></i>
                             Add School
                     </a>
@@ -144,7 +160,7 @@
                         <i class="bi bi-pencil-fill"></i>
                         Parents
                     </a>
-                    <a href="{% url 'edit_add_parent' %}">
+                    <a href="{% url 'register_edit_parent' %}">
                         <i class="bi bi-pencil-square"></i>
                             Add Parents
                     </a>
@@ -298,6 +314,24 @@
                         Company Contact Infor
                     </a>
                 {% endcomment %}
+                <!-- ==== Add education Level, and Stage ======= -->
+                <div class="side__link dropdown">
+                    <span class="dropdown-btn" aria-expanded="false">
+                        <i class="bi bi-person-lines-fill"></i>
+                        Education<span style="padding-left: 2px;">&darr;</span>
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="{% url 'education_stage_list' %}">
+                            <i class="bi bi-pencil-fill"></i>
+                            Education Stage
+                        </a>
+                        <a href="{% url 'education_level_list' %}">
+                            <i class="bi bi-pencil-square"></i>
+                            Education Level
+                        </a>
+                    </div>
+                </div>
+                <!-- ========== END =========== -->
                 <!-- School -->
                 <div class="side__link dropdown">
                     <span class="dropdown-btn" aria-expanded="false">
@@ -309,7 +343,7 @@
                             <i class="bi bi-pencil-fill"></i>
                             Schools
                         </a>
-                        <a href="{% url 'edit_add_school' %}">
+                        <a href="{% url 'school_create' %}">
                             <i class="bi bi-pencil-square"></i>
                                 Add School
                         </a>
@@ -326,7 +360,7 @@
                             <i class="bi bi-pencil-fill"></i>
                             Parents
                         </a>
-                        <a href="{% url 'edit_add_parent' %}">
+                        <a href="{% url 'register_edit_parent' %}">
                             <i class="bi bi-pencil-square"></i>
                                 Add Parents
                         </a>

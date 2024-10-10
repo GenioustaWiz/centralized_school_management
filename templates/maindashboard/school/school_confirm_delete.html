@@ -11,26 +11,39 @@
 </style>
 {% endblock head %}
 {% block content %}
- 
 
-<!-- Write New Articles -->
 <section class="item2 section write-A-page">
   <div class="write-a-c bg--white">
         <div id="w-a-heading">
-            <h2> Delete School</h2>
+            <h2> Confirm Deletion </h2>
         </div>
         <div id="w-a-body">
-            <p>Are you sure you want to delete the school "{{ school.name }}"?</p>
+            <p>Are you sure you want to delete the school "{{ object }}"?</p>
         
             <form class="w-a-body" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="button btn-danger">
-                    <button type="submit">Delete</button>
+                    <button type="submit">Confirm Delete</button>
                 </div>
-                <a href="{% url 'school_list' %}" class="btn btn-secondary">Cancel</a>
+                <a href="{% url 'school_detail' object.slug %}" class="btn btn-secondary">Cancel</a>
             </form> <!-- end of Class w-a-body-->
         </div><!-- end of ID w-a-body-->
     </div><!-- End of Write-articles-->
 </section><!-- End Of Write Articles --> 
 
 {% endblock content%}
+
+
+{% comment %} 
+<div id="w-a-body">
+    <p>Are you sure you want to delete the school "{{ school.name }}"?</p>
+
+    <form class="w-a-body" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="button btn-danger">
+            <button type="submit">Delete</button>
+        </div>
+        <a href="{% url 'school_list' %}" class="btn btn-secondary">Cancel</a>
+    </form> <!-- end of Class w-a-body-->
+</div><!-- end of ID w-a-body-->
+{% endcomment %}

@@ -4,7 +4,6 @@ from allauth.account.views import LoginView
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_protect
 from django.utils.translation import gettext_lazy as _
 
@@ -15,7 +14,7 @@ from django.urls import reverse
 from allauth.account.models import EmailConfirmation
 from django.core.mail import send_mail
 
-from accounts.models import User
+from accounts.models import User 
 
 @csrf_protect
 class CustomLoginView(LoginView):

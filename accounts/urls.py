@@ -38,3 +38,14 @@ urlpatterns = [
     path('Dashboard/register/Admin/', register_admins, name='register_admins'),
     
 ]
+
+# =================  for custom SignUp , using custom signup form  =========================================
+
+# from django.urls import path, include 
+# from allauth.account.views import SignupView 
+# from .forms import CustomSignupForm 
+
+# urlpatterns = [
+#     path('accounts/', include('allauth.urls')), 
+#     path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm), name='account_signup'),
+# ]
