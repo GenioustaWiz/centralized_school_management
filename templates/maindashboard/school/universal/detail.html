@@ -37,9 +37,9 @@
         <dd class="col-sm-9">{{ value }}</dd>
         {% endfor %}
     </dl>
-    <a href="{% url object|lower|add:'_update' object.pk %}" class="btn btn-primary">Edit</a>
-    <a href="{% url object|lower|add:'_delete' object.pk %}" class="btn btn-danger">Delete</a>
-    <a href="{% url object|lower|add:'_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url model_url|lower|add:'_update' object.slug %}" class="btn btn-primary">Edit</a>
+    <a href="{% url model_url|lower|add:'_delete' object.slug %}" class="btn btn-danger">Delete</a>
+    <a href="{% url model_url|lower|add:'_list' %}" class="btn btn-secondary">Back to List</a>
 
 </section>
 {% endblock content %}

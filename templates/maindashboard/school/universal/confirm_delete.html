@@ -25,7 +25,7 @@
                 <div class="button btn-danger">
                     <button type="submit">Confirm Delete</button>
                 </div>
-                <a href="{% url object|lower|add:'_detail' object.pk %}" class="btn btn-secondary">Cancel</a>
+                <a href="{% url model_url|lower|add:'_detail' object.slug %}" class="btn btn-secondary">Cancel</a>
             </form> <!-- end of Class w-a-body-->
         </div><!-- end of ID w-a-body-->
     </div><!-- End of Write-articles-->

@@ -2,7 +2,12 @@ from django.db import models
 from django.utils.text import slugify
 
 class EducationStage(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    STAGES = [
+        ('Early Years Education', 'Early Years Education' ),
+        ('Upper Primary Education', 'Upper Primary Education'),
+        ('Secondary School Education', 'Secondary School Education'),
+    ]
+    name = models.CharField(max_length=50, choices=STAGES)
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):

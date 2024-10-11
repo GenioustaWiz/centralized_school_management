@@ -23,6 +23,11 @@ class EducationStageDetailView(DetailView):
     context_object_name = 'object'
     template_name = 'maindashboard/school/universal/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_url'] = 'education_stage'
+        return context
+
 class EducationStageCreateView(CreateView):
     model = EducationStage
     form_class = EducationStageForm
@@ -52,6 +57,11 @@ class EducationStageDeleteView(DeleteView):
     template_name = 'maindashboard/school/universal/confirm_delete.html'
     success_url = reverse_lazy('education_stage_list')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_url'] = 'education_stage'
+        return context
+
 # ================ Education Level ==========================#
 class EducationLevelListView(ListView):
     model = EducationLevel
@@ -70,6 +80,10 @@ class EducationLevelDetailView(DetailView):
     context_object_name = 'object'
     template_name = 'maindashboard/school/universal/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_url'] = 'education_level'
+        return context
 class EducationLevelCreateView(CreateView):
     model = EducationLevel
     form_class = EducationLevelForm
@@ -98,4 +112,9 @@ class EducationLevelDeleteView(DeleteView):
     model = EducationLevel
     template_name = 'maindashboard/school/universal/confirm_delete.html'
     success_url = reverse_lazy('education_level_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_url'] = 'education_level'
+        return context
 
