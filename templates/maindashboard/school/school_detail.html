@@ -61,7 +61,6 @@
     </dl>
 
     <h2>Contact Information</h2>
-    {% with contact_info=school.schools.first %}
     {% if contact_info %}
     <dl class="row">
         <dt class="col-sm-3">Phone Number</dt>
@@ -79,7 +78,6 @@
     {% else %}
     <p>No contact information available.</p>
     {% endif %}
-    {% endwith %}
 
     <a href="{% url 'school_update' school.slug %}" class="btn btn-primary">Edit</a>
     <a href="{% url 'school_delete' school.slug %}" class="btn btn-danger">Delete</a>

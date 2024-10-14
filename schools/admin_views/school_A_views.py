@@ -22,6 +22,16 @@ class SchoolDetailView(DetailView):
     context_object_name = 'school'
     template_name = 'maindashboard/school/school_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        school = self.object
+        try:
+            context['contact_info'] = SchoolContactInfo.objects.get(name=school)
+        except SchoolContactInfo.DoesNotExist:
+            context['contact_info'] = None
+        print(f'contact info: {context}')
+        return context
+
 class SchoolCreateView(CreateView):
     model = School
     form_class = SchoolForm
@@ -80,6 +90,7 @@ class SchoolUpdateView(UpdateView):
             contact_info = contact_form.save(commit=False)
             contact_info.name = self.object
             contact_info.save()
+            print(f'contact info: {contact_info}')
         return redirect(self.get_success_url())
 
     def form_invalid(self, form, contact_form):

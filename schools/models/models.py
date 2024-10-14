@@ -35,7 +35,7 @@ class School(models.Model):
 
 
 class SchoolContactInfo(models.Model):
-    name = models.ForeignKey(School, on_delete=models.CASCADE, related_name='schools')
+    name = models.ForeignKey(School, on_delete=models.CASCADE, related_name='contact_info')
     phone_number = models.CharField(max_length=100, null=False)
     email = models.EmailField(null=False)
     address = models.CharField(max_length=200, null=False)
