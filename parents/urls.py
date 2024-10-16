@@ -12,8 +12,8 @@ urlpatterns = [
     path('parent/details/<int:pk>/', parent_A_detail, name='parent_A_detail'),
     # path('student/dashboard/<int:pk>/', student_dashboard, name='student_dashboard'),
     
-    path('parent/add/', register_edit_parent, name='register_edit_parent'),
-    path('parent/edit/<int:pk>/', register_edit_parent, name='register_edit_parent'),
+    path('parent/add/', parent_register_edit, name='parent_register_edit'),
+    path('parent/edit/<int:pk>/', parent_register_edit, name='parent_register_edit'),
     path('parent/delete/<int:pk>/', parent_delete, name='parent_delete'),
     # ========= For APIViews ============
     # path('api/parent/', ParentAPIView.as_view(), name='parent_api_views'),

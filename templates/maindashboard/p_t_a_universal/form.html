@@ -1,9 +1,10 @@
 {% extends 'maindashboard/dashboard_base.html' %}
+{% comment %} displays Write  {% endcomment %}
 
 {% load static %}
 
 {% block head %}
-<title> Delete Parent </title>
+<title> {{title}} </title>
 {{form.media}}
 <link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
 <style>
@@ -17,17 +18,16 @@
 <section class="item2 section write-A-page">
   <div class="write-a-c bg--white">
         <div id="w-a-heading">
-            <h2> Delete Parent</h2>
+            <h2> {{title}} </h2>
         </div>
         <div id="w-a-body">
-            <p>Are you sure you want to delete the parent "{{ parent.name }}"?</p>
-        
             <form class="w-a-body" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="button btn-danger">
-                    <button type="submit">Delete</button>
+                {{ user_form.as_p }}
+                {{ form.as_p }}
+                <div class="button">
+                    <button type="submit">Submit</button>
                 </div>
-                <a href="{% url 'parent_A_list' %}" class="btn btn-secondary">Cancel</a>
             </form> <!-- end of Class w-a-body-->
         </div><!-- end of ID w-a-body-->
     </div><!-- End of Write-articles-->

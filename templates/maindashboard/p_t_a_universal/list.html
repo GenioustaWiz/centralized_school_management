@@ -5,7 +5,7 @@
 
 {% block head %}
 <title>
-  Parents List
+  {{title}}
 </title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <link rel="stylesheet" href="{% static 'css/description.css' %}" type="text/css">
@@ -38,7 +38,7 @@
 
 {% block content %}
     <div class="container mt-5">
-        <h1 class="mb-4">Parents List</h1>
+        <h1 class="mb-4">{{title}}</h1>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -50,18 +50,18 @@
                 </tr>
             </thead>
             <tbody>
-                {% for parent in parents %}
+                {% for list_item in context_list %}
                 <tr>
-                    <td><a href="{% url 'parent_A_detail' parent.id %}">{{ parent.user.first_name }}</a></td>
-                    <td>{{ parent.user.email }}</td>
-                    <td>{{ parent.user.phone_number }}</td>
+                    <td><a href="{% url url_first|lower|add:'_A_detail' list_item.id %}">{{ list_item.user.first_name }}</a></td>
+                    <td>{{ list_item.user.email }}</td>
+                    <td>{{ list_item.user.phone_number }}</td>
                     
                     {% comment %}
-                      <td>{{ parent.no_of_schools }}</td>
+                      <td>{{ list_item.no_of_schools }}</td>
                     {% endcomment %}
                     <td>
-                        <a href="{% url 'register_edit_parent' parent.id %}" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="{% url 'parent_delete' parent.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{% url url_first|lower|add:'_register_edit' list_item.id %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url url_first|lower|add:'_delete' list_item.id %}" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}

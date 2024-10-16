@@ -22,4 +22,4 @@ class Parent(models.Model):
         
         return total_parents, total_schools['total_schools'] 
 
-        
+         

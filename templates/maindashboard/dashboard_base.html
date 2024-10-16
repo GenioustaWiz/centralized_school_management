@@ -160,7 +160,7 @@
                         <i class="bi bi-pencil-fill"></i>
                         Parents
                     </a>
-                    <a href="{% url 'register_edit_parent' %}">
+                    <a href="{% url 'parent_register_edit' %}">
                         <i class="bi bi-pencil-square"></i>
                             Add Parents
                     </a>
@@ -232,6 +232,7 @@
                     </a>
                 </div>
             </div>
+            {% comment %} Profile {% endcomment %}
             <div class="nav__link dropdown">
                 <span class="dropdown-btn" aria-expanded="false">
                     <i class="bi bi-person-lines-fill"></i>
@@ -360,7 +361,7 @@
                             <i class="bi bi-pencil-fill"></i>
                             Parents
                         </a>
-                        <a href="{% url 'register_edit_parent' %}">
+                        <a href="{% url 'parent_register_edit' %}">
                             <i class="bi bi-pencil-square"></i>
                                 Add Parents
                         </a>
@@ -410,6 +411,7 @@
                     Services Page Infor
                 </a>
                 {% endcomment %}
+                {% comment %} manage users {% endcomment %}
                 <div class="side__link dropdown">
                     <span class="dropdown-btn" aria-expanded="false">
                         <i class="bi bi-person-lines-fill"></i>
@@ -430,6 +432,7 @@
                         </a>
                     </div>
                 </div>
+                {% comment %} Profile {% endcomment %}
                 <div class="side__link dropdown">
                     <span class="dropdown-btn" aria-expanded="false">
                         <i class="bi bi-person-lines-fill"></i>

@@ -5,4 +5,4 @@ class ParentForm(forms.ModelForm):
 
     class Meta:
         model = Parent
-        fields = [ 'schools', ]
+        fields = [ 'schools', ] 

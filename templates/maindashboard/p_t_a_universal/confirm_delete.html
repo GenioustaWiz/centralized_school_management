@@ -1,5 +1,4 @@
 {% extends 'maindashboard/dashboard_base.html' %}
-{% comment %} displays Write  {% endcomment %}
 
 {% load static %}
 
@@ -18,16 +17,21 @@
 <section class="item2 section write-A-page">
   <div class="write-a-c bg--white">
         <div id="w-a-heading">
-            <h2> {{title}} </h2>
+            <h2> {{title}}</h2>
         </div>
         <div id="w-a-body">
+            <p>Are you sure you want to delete 
+                <span style='color:red; font-size:25px; font-weight:800;' >
+                     {{ context.first_name }} 
+                </span>?
+            </p>
+        
             <form class="w-a-body" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ user_form.as_p }}
-                {{ parent_form.as_p }}
-                <div class="button">
-                    <button type="submit">Submit</button>
-                </div>
+                <div class="button btn-danger">
+                    <button type="submit">Delete</button>
+                </div> 
+                <a href="{% url url_first|lower|add:'_A_list' %}" class="btn btn-secondary">Cancel</a>
             </form> <!-- end of Class w-a-body-->
         </div><!-- end of ID w-a-body-->
     </div><!-- End of Write-articles-->

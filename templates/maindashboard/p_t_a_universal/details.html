@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-<title> {{ parent.user.first_name }} Details </title>
+<title> {{title}} </title>
 {{form.media}}
 <link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
 <link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
@@ -41,35 +41,35 @@
 <section class="item2 section write-A-page">
     <div class="dashboard">
         <div class="card">
-            <h2>Parent Information</h2>
+            <h2>{{title}} </h2>
             <table id="studentInfo">
                 <tr>
                     <th>First Name</th>
-                    <td>{{ parent.user.first_name }}</td>
+                    <td>{{ context_details.user.first_name }}</td>
                 </tr>
                 <tr>
                     <th>Last Name</th>
-                    <td>{{ parent.user.last_name }}</td>
+                    <td>{{ context_details.user.last_name }}</td>
                 </tr>
                 <tr>
                     <th>Gender</th>
-                    <td>{{ parent.user.gender }}</td>
+                    <td>{{ context_details.user.gender }}</td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td>{{ parent.user.email}}</td>
+                    <td>{{ context_details.user.email}}</td>
                 </tr>
                 <tr>
                     <th>Phone Number</th>
-                    <td>{{ parent.user.phone_number }}</td>
+                    <td>{{ context_details.user.phone_number }}</td>
                 </tr>
                 <tr>
                     <th>Schools </th>
-                    <td>{{ parent.schools }}</td>
+                    <td>{{ context_details.schools }}</td>
                 </tr>
                 <tr>
                     <th>Last Login</th>
-                    <td>{{ parent.user.last_login|date:"F d, Y"  }}</td>
+                    <td>{{ context_details.user.last_login|date:"F d, Y"  }}</td>
                 </tr>
             </table>
         </div>

@@ -13,59 +13,59 @@ from django.urls import reverse
 from allauth.account.models import EmailConfirmation
 from django.core.mail import send_mail
 
-from parents.serializers import ParentSerializer
-from parents.models import Parent
-from parents.forms import ParentForm   
+from teachers.serializers import TeacherSerializer
+from teachers.models import Teacher
+from teachers.forms import TeacherForm   
 from accounts.models import User
 from accounts.admin_forms.add_other_users_F import UsersRegistrationForm
 
 @login_required
-def parent_register_edit(request, pk=None):
-    if pk:  # Edit existing parent
-        parent = get_object_or_404(Parent, pk=pk)
-        user = parent.user
-    else:  # New parent registration
-        parent = Parent()
+def teacher_register_edit(request, pk=None):
+    if pk:  # Edit existing teacher
+        teacher = get_object_or_404(Teacher, pk=pk)
+        user = teacher.user
+    else:  # New teacher registration
+        teacher = Teacher()
         user = User()
 
     if request.method == 'POST':
-        parent_form = ParentForm(request.POST, instance=parent)
+        teacher_form = TeacherForm(request.POST, instance=teacher)
         user_form = UsersRegistrationForm(request.POST, request.FILES, instance=user)  # Using this to handle user fields
 
-        if parent_form.is_valid() and user_form.is_valid():
-            # Save the user and set user_type to 'parent'
+        if teacher_form.is_valid() and user_form.is_valid():
+            # Save the user and set user_type to 'teacher'
             user = user_form.save(commit=False)
-            user.user_type = 'parent'
+            user.user_type = 'teacher'
             if pk:
                 user.save()
-                # Link the parent to the user
-                parent.user = user
-                parent.save()
+                # Link the teacher to the user
+                teacher.user = user
+                teacher.save()
                 messages.success(request, f'{user.first_name} Edit successfully.')
-                return redirect('parent_A_list') 
+                return redirect('teacher_A_list') 
             else:
                 # Generate a random password
                 password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
                 user.set_password(password)
                 user.save()
-                # Link the parent to the user
-                parent.user = user
-                parent.save()
+                # Link the teacher to the user
+                teacher.user = user
+                teacher.save()
                 email = user.email
                 print(f'===== new user email===: {email}')
                 # Send password email to the user
                 messages.success(request, f'{user.first_name} Created successfully.')
                 send_generated_password_email(request, email, password)
-                return redirect('parent_register_edit') 
+                return redirect('teacher_register_edit') 
  
     else:
-        parent_form = ParentForm(instance=parent)
+        teacher_form = TeacherForm(instance=teacher)
         user_form = UsersRegistrationForm(instance=user)
 
     context = {
-        'form': parent_form,
+        'form': teacher_form,
         'user_form': user_form,
-        'title': (f'Edit Parent {user.first_name}' if pk else 'Register Parent'),
+        'title': (f'Edit Teacher {user.first_name}' if pk else 'Register Teacher'),
     }
 
     return render(request, 'maindashboard/p_t_a_universal/form.html', context)
@@ -87,40 +87,38 @@ def send_generated_password_email(request, email, password):
     email_message = EmailMessage(subject, message, to=[email])
     email_message.content_subtype = 'html'  # Set the content type to HTML
     email_message.send()
-    print('======== Password Email =========')
-    print(email_message)
-    print('==================== ================') 
-    # ======== to log when the email was sent 
+
+    # ======== to log when the email was sent
     # For instance, using a model to track email confirmation could be useful:
-#     email_confirmation = EmailConfirmation.create(email) 
-#     email_confirmation.sent = timezone.now() 
-#     email_confirmation.save()
+    email_confirmation = EmailConfirmation.create(user)
+    email_confirmation.sent = timezone.now()
+    email_confirmation.save()
 @login_required
-def parent_delete(request, pk):
-    parent = get_object_or_404(Parent, pk=pk)
-    user = parent.user
+def teacher_delete(request, pk):
+    teacher = get_object_or_404(Teacher, pk=pk)
+    user = teacher.user
     if request.method == 'POST':
-        # parent.delete()
+        # teacher.delete()
         user.delete()
-        return redirect('parent_A_list')
+        return redirect('teacher_A_list')
 
     context = {
         'context': user,
-        'url_first': 'parent',
-        'title': (f'Delete Parent {user.first_name} Account' ),
+        'url_first': 'teacher',
+        'title': (f'Delete Teacher {user.first_name} Account' ),
     }
     return render(request, 'maindashboard/p_t_a_universal/confirm_delete.html', context)
 
 # ======== API Access ========
 @login_required
-class ParentAPIView(APIView):
+class TeacherAPIView(APIView):
     def get(self, request):
-        parents = Parent.objects.all()
-        serializer = ParentSerializer(parents, many=True)
+        teachers = Teacher.objects.all()
+        serializer = TeacherSerializer(teachers, many=True)
         return Response(seriaizer.data)
 
     def post(self, request):
-        serializer = ParentSerializer(data=request.data)
+        serializer = TeacherSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
