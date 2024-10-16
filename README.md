@@ -1,6 +1,7 @@
 **Centralized School Management System (CSM System)**
 
-Project Overview
+**Project Overview**
+
 The Centralized School Management System (CSM System) is a revolutionary platform aimed at transforming communication and student management in Kenya's Competency-Based Curriculum (CBC) education system. By bridging the communication gap between students, parents, and schools, the system offers a comprehensive solution that facilitates real-time performance tracking, attendance monitoring, and seamless communication.
 
 **Purpose**
