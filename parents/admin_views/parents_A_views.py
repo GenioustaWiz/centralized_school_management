@@ -68,7 +68,7 @@ def parent_register_edit(request, pk=None):
         'title': (f'Edit Parent {user.first_name}' if pk else 'Register Parent'),
     }
 
-    return render(request, 'maindashboard/p_t_a_universal/form.html', context)
+    return render(request, 'school/dashboard/p_t_a_universal/form.html', context)
 
 def send_generated_password_email(request, email, password):
     current_site = get_current_site(request)
@@ -109,7 +109,7 @@ def parent_delete(request, pk):
         'url_first': 'parent',
         'title': (f'Delete Parent {user.first_name} Account' ),
     }
-    return render(request, 'maindashboard/p_t_a_universal/confirm_delete.html', context)
+    return render(request, 'school/dashboard/p_t_a_universal/confirm_delete.html', context)
 
 # ======== API Access ========
 @login_required

@@ -33,7 +33,7 @@ def edit_add_performance(request, student_id, pk=None):
         'form': performance_form,
         'student': student,
     }
-    return render(request, 'maindashboard/student/performance/add_performance.html', context)
+    return render(request, 'school/dashboard/student/performance/add_performance.html', context)
 
 def performance_delete(request, pk):
     perfomance = get_object_or_404(Performance, pk=pk)
@@ -44,7 +44,7 @@ def performance_delete(request, pk):
     context = {
         'perfomance': perfomance,
     }
-    return render(request, 'maindashboard/student/perfomance/perfomance_confirm_delete.html', context)
+    return render(request, 'school/dashboard/student/perfomance/perfomance_confirm_delete.html', context)
     
 # ========== APIView ===========
 class PerformanceAPIView(APIView):

@@ -30,7 +30,7 @@ def edit_add_attendance(request, student_id):
         'form': attendance_form,
         'student': student,
     }
-    return render(request, 'maindashboard/student/attendance/add_attendance.html', context)
+    return render(request, 'school/dashboard/student/attendance/add_attendance.html', context)
 
 def attendance_delete(request, pk):
     attendance = get_object_or_404(Attendance, pk=pk)
@@ -41,7 +41,7 @@ def attendance_delete(request, pk):
     context = {
         'attendance': attendance,
     }
-    return render(request, 'maindashboard/student/attendance/attendance_confirm_delete.html', context)
+    return render(request, 'school/dashboard/student/attendance/attendance_confirm_delete.html', context)
     
 # ========== APIView ===========
 class AttendanceAPIView(APIView):

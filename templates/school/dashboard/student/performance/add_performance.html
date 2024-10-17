@@ -1,0 +1,35 @@
+{% extends 'school/dashboard/dashboard_base.html' %}
+{% comment %} displays Write  {% endcomment %}
+
+{% load static %}
+
+{% block head %}
+<title> Add performance </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+ 
+
+<!-- Write New Articles -->
+<section class="item2 section write-A-page">
+  <div class="write-a-c bg--white">
+        <div id="w-a-heading">
+            <h2> Add Student Performance </h2>
+        </div>
+        <div id="w-a-body">
+            <form class="w-a-body" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="button">
+                    <button type="submit">Submit</button>
+                </div>
+            </form> <!-- end of Class w-a-body-->
+        </div><!-- end of ID w-a-body-->
+    </div><!-- End of Write-articles-->
+</section><!-- End Of Write Articles --> 
+
+{% endblock content%}

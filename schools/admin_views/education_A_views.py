@@ -9,19 +9,19 @@ from schools.admin_forms.forms import EducationStageForm, EducationLevelForm
 class EducationStageListView(ListView):
     model = EducationStage
     context_object_name = 'object_list'
-    template_name = 'maindashboard/school/universal/list.html'
-
+    template_name = 'school/dashboard/school/universal/list.html'
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['model_name'] = 'Education Stage'
-        context['model_url'] = 'education_stage'
+        context['model_url'] = 'education_stage' 
         context['model_name_plural'] = 'Education Stages'
         return context
 
 class EducationStageDetailView(DetailView):
     model = EducationStage
     context_object_name = 'object'
-    template_name = 'maindashboard/school/universal/detail.html'
+    template_name = 'school/dashboard/school/universal/detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,7 +31,7 @@ class EducationStageDetailView(DetailView):
 class EducationStageCreateView(CreateView):
     model = EducationStage
     form_class = EducationStageForm
-    template_name = 'maindashboard/school/universal/form.html'
+    template_name = 'school/dashboard/school/universal/form.html'
     success_url = reverse_lazy('education_stage_list')
 
     def get_context_data(self, **kwargs):
@@ -43,7 +43,7 @@ class EducationStageCreateView(CreateView):
 class EducationStageUpdateView(UpdateView):
     model = EducationStage
     form_class = EducationStageForm
-    template_name = 'maindashboard/school/universal/form.html'
+    template_name = 'school/dashboard/school/universal/form.html'
     success_url = reverse_lazy('education_stage_list')
 
     def get_context_data(self, **kwargs):
@@ -54,7 +54,7 @@ class EducationStageUpdateView(UpdateView):
 
 class EducationStageDeleteView(DeleteView):
     model = EducationStage
-    template_name = 'maindashboard/school/universal/confirm_delete.html'
+    template_name = 'school/dashboard/school/universal/confirm_delete.html'
     success_url = reverse_lazy('education_stage_list')
 
     def get_context_data(self, **kwargs):
@@ -66,7 +66,7 @@ class EducationStageDeleteView(DeleteView):
 class EducationLevelListView(ListView):
     model = EducationLevel
     context_object_name = 'object_list'
-    template_name = 'maindashboard/school/universal/list.html'
+    template_name = 'school/dashboard/school/universal/list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -78,7 +78,7 @@ class EducationLevelListView(ListView):
 class EducationLevelDetailView(DetailView):
     model = EducationLevel
     context_object_name = 'object'
-    template_name = 'maindashboard/school/universal/detail.html'
+    template_name = 'school/dashboard/school/universal/detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -87,7 +87,7 @@ class EducationLevelDetailView(DetailView):
 class EducationLevelCreateView(CreateView):
     model = EducationLevel
     form_class = EducationLevelForm
-    template_name = 'maindashboard/school/universal/form.html'
+    template_name = 'school/dashboard/school/universal/form.html'
     success_url = reverse_lazy('education_level_list')
 
     def get_context_data(self, **kwargs):
@@ -99,7 +99,7 @@ class EducationLevelCreateView(CreateView):
 class EducationLevelUpdateView(UpdateView):
     model = EducationLevel
     form_class = EducationLevelForm
-    template_name = 'maindashboard/school/universal/form.html'
+    template_name = 'school/dashboard/school/universal/form.html'
     success_url = reverse_lazy('education_level_list')
 
     def get_context_data(self, **kwargs):
@@ -110,7 +110,7 @@ class EducationLevelUpdateView(UpdateView):
 
 class EducationLevelDeleteView(DeleteView):
     model = EducationLevel
-    template_name = 'maindashboard/school/universal/confirm_delete.html'
+    template_name = 'school/dashboard/school/universal/confirm_delete.html'
     success_url = reverse_lazy('education_level_list')
 
     def get_context_data(self, **kwargs):

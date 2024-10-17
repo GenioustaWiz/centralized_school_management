@@ -16,7 +16,7 @@ def student_list(request):
     if request.user.is_authenticated:
         # check the user's type, for access limitations
         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/student/student/student_list.html'
+            template_name = 'school/dashboard/student/student/student_list.html'
         else:
             template_name = 'student/student/student_list.html'
         students = Student.objects.all()
@@ -101,7 +101,7 @@ class StudentListAPIView(APIView):
 #     if request.user.is_authenticated:
 #         # check the user's type, for access limitations
 #         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-#             template_name = 'maindashboard/student/student/student_detail.html'
+#             template_name = 'school/dashboard/student/student/student_detail.html'
 #         else:
 #             template_name = 'student/student/student_detail.html'
 #         student = Student.objects.all()

@@ -1,0 +1,40 @@
+{% extends 'school/dashboard/dashboard_base.html' %}
+{% comment %} displays Write  {% endcomment %}
+
+{% load static %}
+
+{% block head %}
+<title> {{title}} </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+<style>
+  
+</style>
+{% endblock head %}
+{% block content %}
+ 
+
+<!-- Write New Articles -->
+<section class="item2 section write-A-page">
+  <div class="write-a-c bg--white">
+        <div id="w-a-heading">
+            <h2> {% if form.instance.pk %}Edit{% else %}Create{% endif %} School</h2>
+        </div>
+        <div id="w-a-body">
+            <form class="w-a-body" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2>School Information</h2>
+                {{ form.as_p }}
+                
+                <h2>Contact Information</h2>
+                {{ contact_form.as_p }}
+                <div class="button">
+                    <button type="submit">Submit</button>
+                </div>
+                <a href="{% url 'school_list' %}" class="btn btn-secondary">Cancel</a>
+            </form> <!-- end of Class w-a-body-->
+        </div><!-- end of ID w-a-body-->
+    </div><!-- End of write-a-c-->
+</section><!-- End Of write-A-page --> 
+
+{% endblock %}

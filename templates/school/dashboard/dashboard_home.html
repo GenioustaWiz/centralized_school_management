@@ -1,0 +1,175 @@
+{% extends 'school/dashboard/dashboard_base.html' %}
+{% load admin_filters %}  <!-- Load the custom filter -->
+
+{% comment %} displays blog lists and category lists {% endcomment %}
+
+{% load static %}
+
+{% block head %}
+<title> Main Dashboard Home</title>
+<link rel="stylesheet" href="{% static 'css/blogdashboard/dashboard_home.css' %}">
+<link rel="stylesheet" href="{% static 'css/blogdashboard/common.css' %}">
+<style>
+    th{
+        padding-right: 20px;
+      }
+    @media screen and (max-width: 600px) {
+        table {
+            font-size: 11px;
+        }
+    }
+    tr:nth-child(even) {
+        background-color: #bac3d1a1;/* Set the background color for even rows */
+        color: #000;/* Set the text color for even rows (optional) */
+    }
+</style>
+{% endblock head %}
+
+{% block content %}
+{% comment %} <!-- home --> {% endcomment %}
+<section class="item2 section home-page" id="home">
+    {% comment %} infor cards  {% endcomment %}
+        <div class="info-cards">
+            {% comment %} Total SCHOOL & TYPES {% endcomment %}
+            <a href="{% url 'school_list' %}">
+            <div class="card--item">
+                <div id="card--item" style="margin: 0.8rem;">
+                    <div class="card-top">
+                        <div class="card-title-inf">
+                            <span class="card--title ">Schools</span>
+                            <span id="span2">{{ schools_combined_data.0 }}</span>
+                        </div>
+                        <div class="card-title-inf">
+                            <span class="card--title ">Types</span>
+                            <span id="span2">{{ schools_combined_data.1 }}</span>
+                        </div>
+                        <i class="pink d-c-fa fa fa-layer-group"></i>
+                    </div>
+                    <p class="card--footer">Total Schools & Types</p>
+                </div>
+                <div class="card-bar bg--pink"></div>
+            </div>
+            </a>
+            {% comment %} end {% endcomment %}
+            {% comment %} TOTAL NO OF PARENTS AND PARENTS SCHOOLS {% endcomment %}
+            <a href="{% url 'parent_A_list' %}">
+            <div class="card--item">
+                <div id="card--item" style="margin: 0.8rem;">
+                    <div class="card-top">
+                        <div class="card-title-inf">
+                            <span class="card--title ">Parents</span>
+                            <span id="span2">{{total_parents}}</span>
+                        </div>
+                        <div class="card-title-inf">
+                            <span class="card--title ">Schools</span>
+                            <span id="span2">{{total_schools}}</span>
+                        </div>
+                        <i class="green d-c-fa fa fa-layer-group"></i>
+                    </div>
+                    <p class="card--footer">Total Parents & Schools</p>
+                </div>
+                <div class="card-bar bg--green"></div>
+            </div>
+            </a>
+            {% comment %} END {% endcomment %}       
+            {% comment %} Website Total Visitors {% endcomment %}
+            <!-- <a href="">
+            <div class="card--item">
+                <div id="card--item" style="margin: 0.8rem;">
+                    <div class="card-top">
+                        <div class="card-title-inf">
+                            <span class="card--title ">Total visitors</span>
+                            <span id="span2"></span>
+                        </div>
+                        <i class="blue d-c-fa fa fa-layer-group"></i>
+                    </div>
+                    <p class="card--footer">Website Total Visitors </p>
+                </div>
+                <div class="card-bar bg--blue"></div>
+            </div>
+            </a> -->
+            {% comment %} end {% endcomment %}
+            {% comment %} Total number of visits {% endcomment %}
+            <!-- <a href="" style="cursor: default;">
+            <div class="card--item">
+                <div id="card--item" style="margin: 0.8rem;">
+                    <div class="card-top">
+                        <div class="card-title-inf">
+                            <span class="card--title ">Total visits</span>
+                            <span id="span2"></span>
+                        </div>
+                        <i class="yellow d-c-fa fa fa-layer-group"></i>
+                    </div>
+                    <p class="card--footer">Total number of visits</p>
+                </div>
+                <div class="card-bar bg--yellow"></div>
+            </div>
+            </a> -->
+            {% comment %} END OF COMMENTS {% endcomment %}
+        </div>
+    {% comment %} end info cards {% endcomment %}
+
+    {% comment %} |||||||||COMMON FOR MANY PAGES|||||||||| {% endcomment %}
+        {% comment %} VISIT WEBSITE {% endcomment %}
+        <div class="bfr-r-a">
+            <div id="bfr-r-a">
+                    <!--<i class="fas fa-chart-line "></i>-->
+                <div class="d-inline" style="padding: 0 10px;">
+                    <!--T/B, L/R  
+                    <h5 style="margin: 0;">Recent Published Articles</h5>
+                    <span>List of your recently published articles.</span>-->
+                </div>
+            </div>
+            <div class="visit-website">
+                <button><a href="{% url 'main_index' %}">
+                        <i class="fa fa-paper-plane" style="padding-right: 10px;color: #0a600a;"></i>
+                        Visit website
+                    </a></button>
+            </div>
+        </div>
+        {% comment %} END OF VISIT WEBSITE  {% endcomment %}
+        {% comment %} RECENT ARTICLES {% endcomment %}
+        <div class="recent-articles">
+            <div id="r-a-heading">
+                <h2> Recent Activities </h2>
+            </div>
+            {% if log_entries %}
+            <div id="r-a-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action Time</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Content Type</th>
+                            <th>Object</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log_entry in log_entries %}
+                            <tr>
+                                <td>{{ log_entry.action_time }}</td>
+                                <td>{{ log_entry.user }}</td>
+                                <td>{{ log_entry.action_flag|display_action }}</td>
+                                <td>{{ log_entry.content_type }}</td>
+                                <td>{{ log_entry.object_repr }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div>No blogs published yet.</div>
+            {% endif %}
+        </div>
+        {% comment %} END OF RECENT ARTICLES {% endcomment %}
+        
+    {% comment %} |||||||||END COMMON FOR MANY PAGES|||||||||| {% endcomment %}
+</section>
+{% comment %} <!-- end Home --> {% endcomment %}
+
+
+{% endblock content %}
+
+{%block js%}
+{%endblock js%}

@@ -5,4 +5,4 @@ class TeacherForm(forms.ModelForm):
 
     class Meta:
         model = Teacher
-        fields = [ 'schools', 'qualifications', 'subjects'] 
+        fields = [ 'school', 'qualifications', 'subjects'] 

@@ -9,12 +9,13 @@ from parents.models import Parent
 from accounts.models import User  
 from students.models import Student, Attendance, Performance
 
+@login_required
 def parent_A_list(request):
     # Check if the user is authenticated
     if request.user.is_authenticated:
         # Check the user's type, for access limitations
         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/p_t_a_universal/list.html'
+            template_name = 'school/dashboard/p_t_a_universal/list.html'
             
         else:
             template_name = 'parent/parent_list.html'
@@ -35,7 +36,7 @@ def parent_A_detail(request, pk=None):
 
     # Check the user's type, for access limitations 
     if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-        template_name = 'maindashboard/p_t_a_universal/details.html' 
+        template_name = 'school/dashboard/p_t_a_universal/details.html' 
     else: template_name = 'forbidden.html' 
     
     parent = get_object_or_404(Parent, pk=pk) 

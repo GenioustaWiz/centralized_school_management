@@ -8,7 +8,7 @@ def school_list(request):
     if request.user.is_authenticated:
         # Check the user's type, for access limitations
         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/school/school_list.html'
+            template_name = 'school/dashboard/school/school_list.html'
             
         else:
             template_name = 'school/school_list.html'
@@ -28,7 +28,7 @@ def school_detail(request, slug):
     if request.user.is_authenticated:
         # Check the user's type, for access limitations
         if request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/school/school_details.html'
+            template_name = 'school/dashboard/school/school_details.html'
         else:
             template_name = 'school/school_details.html'
     else:

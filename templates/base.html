@@ -100,7 +100,12 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         
                         <li><a class="dropdown-item" href="{% url 'main_dashboard_home' %}">Dashboard</a></li>
-                        
+                        {% comment %}{% if request.user.user_type in ' headteacher,  school_admin ' %}{% endcomment %} 
+                        <li><a class="dropdown-item" href="{% url 'school_dashboard_home' %}">School</a></li>
+                        {% comment %}{%endif%}{% endcomment %} 
+                        {% comment %}{% if request.user.user_type in ' teacher' %}{% endcomment %} 
+                        <li><a class="dropdown-item" href="{% url 'school_dashboard_home' %}">Teachers</a></li>
+                        {% comment %}{%endif%}{% endcomment %} 
                     </ul>
                 </div>
                 {%endif%}

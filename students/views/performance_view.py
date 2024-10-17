@@ -8,7 +8,7 @@ def performance_list(request):
     if request.user.is_authenticated:
         # check the user's type, for access limitations
         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/student/performance/performance_list.html'
+            template_name = 'school/dashboard/student/performance/performance_list.html'
         else:
             template_name = 'student/performance/performance_list.html'
         performances = Performance.objects.all()
@@ -22,7 +22,7 @@ def performance_detail(request):
     if request.user.is_authenticated:
         # check the user's type, for access limitations
         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/student/performance/performance_detail.html'
+            template_name = 'school/dashboard/student/performance/performance_detail.html'
         else:
             template_name = 'student/performance/performance_detail.html'
         performance = Performance.objects.all()

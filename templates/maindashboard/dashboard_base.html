@@ -341,8 +341,16 @@
                     </span>
                     <div class="dropdown-content">
                         <a href="{% url 'school_list' %}">
-                            <i class="bi bi-pencil-fill"></i>
+                            <i class="bi bi-list-task"></i>
                             Schools
+                        </a>
+                        <a href="{% url 'teacher_A_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Teachers
+                        </a>
+                        <a href="{% url 'parent_A_list' %}">
+                            <i class="bi bi-list-task"></i>
+                            Parents
                         </a>
                         <a href="{% url 'school_create' %}">
                             <i class="bi bi-pencil-square"></i>
@@ -351,6 +359,8 @@
                     </div>
                 </div>
                 <!-- Parents -->
+                
+                {% comment %}
                 <div class="side__link dropdown">
                     <span class="dropdown-btn" aria-expanded="false">
                         <i class="bi bi-person-lines-fill"></i>
@@ -367,6 +377,7 @@
                         </a>
                     </div>
                 </div>
+                {% endcomment %}
                 <!-- Students -->
                 <div class="side__link dropdown">
                     <span class="dropdown-btn" aria-expanded="false">

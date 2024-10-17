@@ -1,0 +1,79 @@
+
+{% extends 'school/dashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block head %}
+<title> {{title}} </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
+<style>
+    .card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .card h2 {
+        margin-top: 0;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+{% endblock head %}
+{% block content %}
+ 
+
+<!-- Write New Articles -->
+<section class="item2 section write-A-page">
+    <div class="dashboard">
+        <div class="card">
+            <h2>{{title}} </h2>
+            <table id="studentInfo">
+                <tr>
+                    <th>First Name</th>
+                    <td>{{ context_details.user.first_name }}</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>{{ context_details.user.last_name }}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{ context_details.user.gender }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ context_details.user.email}}</td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td>{{ context_details.user.phone_number }}</td>
+                </tr>
+                <tr>
+                    <th>Schools </th>
+                    <td>{{ context_details.schools }}</td>
+                </tr>
+                <tr>
+                    <th>Last Login</th>
+                    <td>{{ context_details.user.last_login|date:"F d, Y"  }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+        
+{% endblock content%}

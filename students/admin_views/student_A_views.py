@@ -29,7 +29,7 @@ def edit_add_student(request, pk=None):
     context = {
         'form': student_form,
     }
-    return render(request, 'maindashboard/student/student/add_student.html', context)
+    return render(request, 'school/dashboard/student/student/add_student.html', context)
 
 def student_delete(request, pk):
     student = get_object_or_404(Student, pk=pk)
@@ -40,7 +40,7 @@ def student_delete(request, pk):
     context = {
         'student': student,
     }
-    return render(request, 'maindashboard/student/student/student_confirm_delete.html', context)
+    return render(request, 'school/dashboard/student/student/student_confirm_delete.html', context)
     
 # ========== APIView ===========
 class StudentAPIView(APIView):

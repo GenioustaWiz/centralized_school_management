@@ -16,7 +16,7 @@ def student_dashboard(request, pk=None):
 
     # check the user's type, for access limitations
     if user.is_superuser or user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-        template_name = 'maindashboard/student/student_dashboard.html'
+        template_name = 'school/dashboard/student/student_dashboard.html'
     elif user.user_type == 'parent':
         template_name = 'student/student_dashboard.html'
 

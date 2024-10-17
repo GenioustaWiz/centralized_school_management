@@ -2,11 +2,10 @@
 from django.urls import path
 from .admin_views.teachers_A_views import *
 from .admin_views.views import *
-from .views.views import *
 
 urlpatterns = [
     
-    path('Your-Dashboard/', teacher_detail, name='teacher_detail'),
+    # path('Your-Dashboard/', teacher_detail, name='teacher_detail'),
     path('teachers/', teacher_A_list, name='teacher_A_list'),
 
     path('teacher/details/<int:pk>/', teacher_A_detail, name='teacher_A_detail'),

@@ -13,7 +13,7 @@ from django.urls import reverse
 from allauth.account.models import EmailConfirmation
 from django.core.mail import send_mail
 
-from teachers.serializers import TeacherSerializer
+# from teachers.serializers import TeacherSerializer
 from teachers.models import Teacher
 from teachers.forms import TeacherForm   
 from accounts.models import User
@@ -68,7 +68,7 @@ def teacher_register_edit(request, pk=None):
         'title': (f'Edit Teacher {user.first_name}' if pk else 'Register Teacher'),
     }
 
-    return render(request, 'maindashboard/p_t_a_universal/form.html', context)
+    return render(request, 'school/dashboard/p_t_a_universal/form.html', context)
 
 def send_generated_password_email(request, email, password):
     current_site = get_current_site(request)
@@ -107,21 +107,21 @@ def teacher_delete(request, pk):
         'url_first': 'teacher',
         'title': (f'Delete Teacher {user.first_name} Account' ),
     }
-    return render(request, 'maindashboard/p_t_a_universal/confirm_delete.html', context)
+    return render(request, 'school/dashboard/p_t_a_universal/confirm_delete.html', context)
 
 # ======== API Access ========
-@login_required
-class TeacherAPIView(APIView):
-    def get(self, request):
-        teachers = Teacher.objects.all()
-        serializer = TeacherSerializer(teachers, many=True)
-        return Response(seriaizer.data)
+# @login_required
+# class TeacherAPIView(APIView):
+#     def get(self, request):
+#         teachers = Teacher.objects.all()
+#         serializer = TeacherSerializer(teachers, many=True)
+#         return Response(seriaizer.data)
 
-    def post(self, request):
-        serializer = TeacherSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request):
+#         serializer = TeacherSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         

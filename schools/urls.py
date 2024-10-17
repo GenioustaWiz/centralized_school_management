@@ -3,8 +3,11 @@
 from django.urls import path
 from schools.admin_views.school_A_views import *
 from schools.admin_views.education_A_views import *
+from schools.admin_views.dashboard_views import *
 
 urlpatterns = [
+    path('school/dashboard/', school_dashboard_home, name='school_dashboard_home'),
+    
     path('education/stages/', EducationStageListView.as_view(), name='education_stage_list'),
     path('education/stages/create/', EducationStageCreateView.as_view(), name='education_stage_create'),
     path('education/stages/<slug:slug>/', EducationStageDetailView.as_view(), name='education_stage_detail'),

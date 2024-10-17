@@ -1,0 +1,99 @@
+
+{% extends 'school/dashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block head %}
+<title> {{ school_detail.name }} Details </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
+<style>
+    .heading{
+        font-size: 20px;
+        background-color: azure;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        padding: 0 25px 0 5px;
+    }
+    .frontP-cards {
+        top: 0;
+        background-color: azure;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        margin: 0 15px;
+        gap: 4px;
+        padding-bottom: 20px;
+    }
+        .card__tag {
+            color: black !important;
+        }
+</style>
+{% endblock head %}
+{% block content %}
+ 
+
+<!-- Write New Articles -->
+<section class="item2 section write-A-page">
+    
+    
+    <h1>{{ school.name }}</h1>
+    <dl class="row">
+        <dt class="col-sm-3">Location</dt>
+        <dd class="col-sm-9">{{ school.location }}</dd>
+        
+        <dt class="col-sm-3">School Type</dt>
+        <dd class="col-sm-9">{{ school.school_type }}</dd>
+        
+        <dt class="col-sm-3">Education Levels</dt>
+        <dd class="col-sm-9">
+            {% for level in school.education_levels.all %}
+                {{ level.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </dd>
+        
+        <dt class="col-sm-3">Established Date</dt>
+        <dd class="col-sm-9">{{ school.established_date }}</dd>
+        
+        <dt class="col-sm-3">Capacity</dt>
+        <dd class="col-sm-9">{{ school.capacity }}</dd>
+        
+        <dt class="col-sm-3">About</dt>
+        <dd class="col-sm-9">{{ school.about }}</dd>
+    </dl>
+
+    <h2>Contact Information</h2>
+    {% if contact_info %}
+    <dl class="row">
+        <dt class="col-sm-3">Phone Number</dt>
+        <dd class="col-sm-9">{{ contact_info.phone_number }}</dd>
+        
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">{{ contact_info.email }}</dd>
+        
+        <dt class="col-sm-3">Address</dt>
+        <dd class="col-sm-9">{{ contact_info.address }}</dd>
+        
+        <dt class="col-sm-3">WhatsApp</dt>
+        <dd class="col-sm-9"><a href="{{ contact_info.whatsapp }}">{{ contact_info.whatsapp }}</a></dd>
+    </dl>
+    {% else %}
+    <p>No contact information available.</p>
+    {% endif %}
+
+    <a href="{% url 'school_update' school.slug %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'school_delete' school.slug %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'school_list' %}" class="btn btn-secondary">Back to List</a>
+        
+    
+    
+    {% comment %} 
+    <div class="container mt-5">
+        <h1 class="mb-4">{{ school_detail.name }} Details</h1>
+        <p><strong>Location:</strong> {{ school_detail.location }}</p>
+        <p><strong>School Type:</strong> {{ school_detail.school_type }}</p>
+        <p><strong>Education Levels:</strong> {{ school_detail.education_levels }}</p>
+        <a href="{% url 'school_list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+    {% endcomment %}
+</section>
+        
+{% endblock content%}

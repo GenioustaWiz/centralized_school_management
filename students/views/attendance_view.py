@@ -8,7 +8,7 @@ def attendance_list(request):
     if request.user.is_authenticated:
         # check the user's type, for access limitations
         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/student/attendance/attendance_list.html'
+            template_name = 'school/dashboard/student/attendance/attendance_list.html'
         else:
             template_name = 'student/attendance/attendance_list.html'
         attendances = Attendance.objects.all()
@@ -22,7 +22,7 @@ def attendance_detail(request):
     if request.user.is_authenticated:
         # check the user's type, for access limitations
         if request.user.is_superuser or request.user.user_type in ['master_admin', 'lead_admin', 'data_admin']:
-            template_name = 'maindashboard/student/attendance/attendance_detail.html'
+            template_name = 'school/dashboard/student/attendance/attendance_detail.html'
         else:
             template_name = 'student/attendance/attendance_detail.html'
         attendance = Attendance.objects.all()

@@ -8,7 +8,7 @@ from schools.admin_forms.forms import SchoolForm, SchoolContactInfoForm
 class SchoolListView(ListView):
     model = School
     context_object_name = 'schools'
-    template_name = 'maindashboard/school/school_list.html'
+    template_name = 'school/dashboard/school/school_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -20,7 +20,7 @@ class SchoolListView(ListView):
 class SchoolDetailView(DetailView):
     model = School
     context_object_name = 'school'
-    template_name = 'maindashboard/school/school_detail.html'
+    template_name = 'school/dashboard/school/school_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -35,7 +35,7 @@ class SchoolDetailView(DetailView):
 class SchoolCreateView(CreateView):
     model = School
     form_class = SchoolForm
-    template_name = 'maindashboard/school/school_form.html'
+    template_name = 'school/dashboard/school/school_form.html'
     success_url = reverse_lazy('school_list')
 
     def get_context_data(self, **kwargs):
@@ -65,7 +65,7 @@ class SchoolCreateView(CreateView):
 class SchoolUpdateView(UpdateView):
     model = School
     form_class = SchoolForm
-    template_name = 'maindashboard/school/school_form.html'
+    template_name = 'school/dashboard/school/school_form.html'
     success_url = reverse_lazy('school_list')
 
     def get_context_data(self, **kwargs):
@@ -98,7 +98,7 @@ class SchoolUpdateView(UpdateView):
 
 class SchoolDeleteView(DeleteView):
     model = School
-    template_name = 'maindashboard/school/school_confirm_delete.html'
+    template_name = 'school/dashboard/school/school_confirm_delete.html'
     success_url = reverse_lazy('school_list')
 
 
@@ -142,7 +142,7 @@ class SchoolDeleteView(DeleteView):
 #     context={
 #         'form': school_form,
 #     }
-#     return render(request, 'maindashboard/school/add_school.html', context)
+#     return render(request, 'school/dashboard/school/add_school.html', context)
 
 # def school_delete(request, pk):
 #     school = get_object_or_404(School, pk=pk)
@@ -152,7 +152,7 @@ class SchoolDeleteView(DeleteView):
 #     context = {
 #         'school': school,
 #     }
-#     return render(request, 'maindashboard/school/school_confirm_delete.html', context)
+#     return render(request, 'school/dashboard/school/school_confirm_delete.html', context)
     
 # #======= API Access ==========
 # class SchoolAPIView(APIView):
