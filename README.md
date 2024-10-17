@@ -1,8 +1,11 @@
 **Centralized School Management System (CSM System)**
-Project Overview
+
+**Project Overview**
+
 The Centralized School Management System (CSM System) is a revolutionary platform aimed at transforming communication and student management in Kenya's Competency-Based Curriculum (CBC) education system. By bridging the communication gap between students, parents, and schools, the system offers a comprehensive solution that facilitates real-time performance tracking, attendance monitoring, and seamless communication.
 
 **Purpose**
+
 The CSM System is designed to:
 
 Revolutionize communication between schools and busy parents.
@@ -12,6 +15,7 @@ Reduce student dropouts by improving engagement and identifying at-risk students
 Offer a platform accessible through both web and mobile applications.
 
 **Problem Statement**
+
 The system addresses several key challenges:
 
 Inefficient communication between schools and parents.
@@ -29,12 +33,14 @@ Financial and health tracking: Support for fee management and health monitoring.
 Targeted assistance: Identify and support at-risk students with early intervention.
 
 **User Roles and Access Control**
+
 School-level roles: Data Admin, Principal, Teachers, Students, and Parents.
 System-level roles: Lead Admin and Master Admin.
 Role-based access: Ensures data privacy, security, and role-specific access to information.
 Government integration: Enables oversight and program monitoring for compliance and transparency.
 
 **Benefits**
+
 For Schools:
 Enhanced communication with parents.
 Streamlined student performance tracking.
@@ -50,11 +56,12 @@ Personalized learning insights and support.
 Better career guidance based on student strengths and interests.
 
 **Technical Implementation**
+
 Web and mobile platforms: Comprehensive access for all stakeholders.
 RFID integration: Automated attendance tracking with notifications.
 Secure data protocols: Safeguard student information with robust security.
 Scalability: Built for future expansion and integration with government oversight systems.
 
-Github Link fo the Fluuter CSM App: [CSM Flutter App](https://github.com/GenioustaWiz/csm_flutter_app)
+Github Link for the Fluter CSM App: [CSM Flutter App](https://github.com/GenioustaWiz/csm_flutter_app)
 
 
