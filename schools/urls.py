@@ -1,11 +1,17 @@
 
 
 from django.urls import path
+from schools.views.views import school_home, calendar_view, gallery_view 
 from schools.admin_views.school_A_views import *
 from schools.admin_views.education_A_views import *
 from schools.admin_views.dashboard_views import *
 
 urlpatterns = [
+    path('school/<slug:slug>/', school_home, name='school_home'),
+    path('school/<slug:slug>/calendar/', calendar_view, name='school_calendar'),
+    path('school/<slug:slug>/gallery/', gallery_view, name='school_gallery'),
+]
+urlpatterns += [ #================ ADMIN =================
     path('school/dashboard/', school_dashboard_home, name='school_dashboard_home'),
     
     path('education/stages/', EducationStageListView.as_view(), name='education_stage_list'),
