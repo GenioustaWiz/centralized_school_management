@@ -1,0 +1,35 @@
+/* Faculty Section */
+.faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.faculty-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faculty-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.faculty-content {
+    padding: 1.5rem;
+}
+
+.faculty-content .title {
+    color: #007bff;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.achievements h4 {
+    margin: 1rem 0 0.5rem;
+    color: #333;
+}
