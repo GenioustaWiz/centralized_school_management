@@ -1,0 +1,18 @@
+
+<section class="featured-news-slider">
+    <h2>Featured News</h2>
+    <div class="slider">
+        {% for news in featured_news %}
+        <div class="slide">
+            {% if news.image %}
+            <img src="{{ news.image.url }}" alt="{{ news.title }}">
+            {% endif %}
+            <div class="slide-content">
+                <h3>{{ news.title }}</h3>
+                <p>{{ news.content|truncatewords:30 }}</p>
+                <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

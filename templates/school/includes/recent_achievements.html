@@ -1,0 +1,19 @@
+
+<section class="achievements-section">
+    <h2>Student Achievements</h2>
+    <div class="achievements-grid">
+        {% for achievement in recent_achievements %}
+        <div class="achievement-card">
+            {% if achievement.image %}
+            <img src="{{ achievement.image.url }}" alt="{{ achievement.title }}">
+            {% endif %}
+            <div class="achievement-content">
+                <span class="category-badge">{{ achievement.category }}</span>
+                <h3>{{ achievement.title }}</h3>
+                <p class="student-name">{{ achievement.student.name }}</p>
+                <p>{{ achievement.description|truncatewords:20 }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

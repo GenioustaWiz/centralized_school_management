@@ -1,45 +1,109 @@
 
-{% extends 'maindashboard/dashboard_base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block head %}
-<title> {{ school_detail.name }} Details </title>
+<title> {{ school.name }}</title>
 {{form.media}}
-<link rel="stylesheet" href="{% static 'css/blogdashboard/author/write_new_article.css' %}"> 
 <link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
 <style>
-    .heading{
-        font-size: 20px;
-        background-color: azure;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        padding: 0 25px 0 5px;
-    }
-    .frontP-cards {
-        top: 0;
-        background-color: azure;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        margin: 0 15px;
-        gap: 4px;
-        padding-bottom: 20px;
-    }
-        .card__tag {
-            color: black !important;
-        }
 </style>
 {% endblock head %}
 {% block content %}
- 
-
-<!-- Write New Articles -->
-<section class="item2 section write-A-page">
-    <div class="container mt-5">
-        <h1 class="mb-4">{{ school_detail.name }} Details</h1>
-        <p><strong>Location:</strong> {{ school_detail.location }}</p>
-        <p><strong>School Type:</strong> {{ school_detail.school_type }}</p>
-        <p><strong>Education Levels:</strong> {{ school_detail.education_levels }}</p>
-        <a href="{% url 'school_list' %}" class="btn btn-secondary">Back to List</a>
+<div class="school-header">
+    <div class="school-header-content">
+        <h1>{{ school.name }}</h1>
+        <p class="location"><i class="fas fa-map-marker-alt"></i> {{ school.location }}</p>
+        <p class="established">Established: {{ school.established_date|date:"F j, Y" }}</p>
     </div>
-</section>
-        
-{% endblock content%}
+</div>
+
+<div class="school-stats-container">
+    <div class="stat-card">
+        <i class="fas fa-user-graduate"></i>
+        <h3>{{ stats.total_students }}</h3>
+        <p>Students</p>
+    </div>
+    <div class="stat-card">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <h3>{{ stats.total_teachers }}</h3>
+        <p>Teachers</p>
+    </div>
+    <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <h3>{{ stats.student_teacher_ratio }}:1</h3>
+        <p>Student-Teacher Ratio</p>
+    </div>
+    <div class="stat-card">
+        <i class="fas fa-user-friends"></i>
+        <h3>{{ school.capacity }}</h3>
+        <p>Total Capacity</p>
+    </div>
+</div>
+
+<div class="school-content">
+    <!-- Featured News Slider -->
+    {% include 'school/includes/featured_news.html' %}
+    <!-- Events Calendar Preview -->
+    {% include 'school/includes/upcoming_events.html' %}
+    <!-- Student Achievements -->
+    {% include 'school/includes/recent_achievements.html' %}
+    <!-- Featured Faculty -->
+    {% include 'school/includes/featured_faculty.html' %}
+    <!-- Gallery Preview -->
+    {% include 'school/includes/recent_albums.html' %}
+
+    <div class="about-section">
+        <h2>About Our School</h2>
+        <p>{{ school.about }}</p>
+    </div>
+
+    <div class="performance-section">
+        <h2>Academic Performance</h2>
+        <div class="performance-cards">
+            {% for perf in performance %}
+            <div class="performance-card">
+                <h3>{{ perf.year }}</h3>
+                <div class="performance-stats">
+                    <p>Average Score: {{ perf.average_score }}%</p>
+                    <p>Graduates: {{ perf.number_of_graduates }}</p>
+                    <p>College Acceptance: {{ perf.college_acceptance_rate }}%</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="activities-section">
+        <h2>School Activities</h2>
+        <div class="activities-grid">
+            {% for activity in activities %}
+            <div class="activity-card">
+                {% if activity.image %}
+                <img src="{{ activity.image.url }}" alt="{{ activity.title }}">
+                {% endif %}
+                <h3>{{ activity.title }}</h3>
+                <p class="date">{{ activity.date|date:"F j, Y" }}</p>
+                <p>{{ activity.description|truncatewords:30 }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="awards-section">
+        <h2>Awards & Recognition</h2>
+        <div class="awards-timeline">
+            {% for award in awards %}
+            <div class="award-item">
+                <div class="award-content">
+                    <h3>{{ award.title }}</h3>
+                    <p class="award-date">{{ award.date_received|date:"F Y" }}</p>
+                    <p class="awarding-body">{{ award.awarding_body }}</p>
+                    <p>{{ award.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

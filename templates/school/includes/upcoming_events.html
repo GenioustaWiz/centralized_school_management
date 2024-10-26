@@ -1,0 +1,21 @@
+
+<section class="events-preview">
+        <h2>Upcoming Events</h2>
+        <div class="events-grid">
+            {% for event in upcoming_events %}
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">{{ event.start_date|date:"d" }}</span>
+                    <span class="month">{{ event.start_date|date:"M" }}</span>
+                </div>
+                <div class="event-details">
+                    <h3>{{ event.title }}</h3>
+                    <p class="event-type">{{ event.get_event_type_display }}</p>
+                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</p>
+                    <p class="event-time"><i class="far fa-clock"></i> {{ event.start_date|date:"g:i A" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'school_calendar' school.slug %}" class="btn btn-secondary">View Full Calendar</a>
+    </section>

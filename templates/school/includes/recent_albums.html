@@ -1,0 +1,20 @@
+
+<section class="gallery-preview">
+    <h2>School Gallery</h2>
+    <div class="gallery-grid">
+        {% for album in recent_albums %}
+        <div class="gallery-card">
+            {% with first_image=album.galleryimage_set.first %}
+                {% if first_image %}
+                <img src="{{ first_image.image.url }}" alt="{{ album.title }}">
+                {% endif %}
+            {% endwith %}
+            <div class="gallery-overlay">
+                <h3>{{ album.title }}</h3>
+                <p>{{ album.date_created|date:"F Y" }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'school_gallery' school.slug %}" class="btn btn-secondary">View All Albums</a>
+</section>

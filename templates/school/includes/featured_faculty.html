@@ -1,0 +1,21 @@
+
+<section class="faculty-section">
+    <h2>Featured Faculty</h2>
+    <div class="faculty-grid">
+        {% for faculty in featured_faculty %}
+        <div class="faculty-card">
+            {% if faculty.image %}
+            <img src="{{ faculty.image.url }}" alt="{{ faculty.teacher.name }}">
+            {% endif %}
+            <div class="faculty-content">
+                <h3>{{ faculty.teacher.name }}</h3>
+                <p class="title">{{ faculty.title }}</p>
+                <div class="achievements">
+                    <h4>Achievements</h4>
+                    {{ faculty.achievements|linebreaks }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
