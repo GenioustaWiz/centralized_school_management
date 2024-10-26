@@ -1,3 +1,10 @@
+/* importing other CSS files */
+@import url("featured_news.css");
+@import url("upcoming_events.css");
+@import url("recent_achievements.css");
+@import url("featured_faculty.css");
+@import url("recent_albums.css");
+/*  ==========  ===================== */
 
 .school-header {
     /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/school-header-bg.jpg'); */
