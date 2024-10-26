@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title> School Gallery </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
+<style>
+</style>
+{% endblock head %}
+
+{% block content %}
+<div class="gallery-container">
+    <div class="gallery-header">
+        <h1>School Gallery</h1>
+    </div>
+
+    <div class="albums-grid">
+        {% for album in albums %}
+        <div class="album-card">
+            <div class="album-preview">
+                {% with images=album.galleryimage_set.all %}
+                    {% if images %}
+                        <div class="image-stack">
+                            {% for image in images|slice:":3" %}
+                                <img src="{{ image.image.url }}" alt="{{ image.caption }}"
+                                     class="stack-image stack-image-{{ forloop.counter }}">
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="album-info">
+                <h3>{{ album.title }}</h3>
+                <p class="album-date">{{ album.date_created|date:"F Y" }}</p>
+                <p class="image-count">
+                    {{ album.galleryimage_set.count }} photos
+                </p>
+                <p class="album-description">{{ album.description|truncatewords:20 }}</p>
+                <button class="view-album-btn" data-album-id="{{ album.id }}">
+                    View Album
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal for viewing album images -->
+    <div id="gallery-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-album-title"></h2>
+            </div>
+            <div class="modal-gallery">
+                <!-- Images will be loaded here via JavaScript -->
+            </div>
+            <button class="nav-btn prev-btn">&lt;</button>
+            <button class="nav-btn next-btn">&gt;</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('gallery-modal');
+    const modalContent = modal.querySelector('.modal-gallery');
+    const closeBtn = modal.querySelector('.close-modal');
+    const prevBtn = modal.querySelector('.prev-btn');
+    const nextBtn = modal.querySelector('.next-btn');
+    let currentImageIndex = 0;
+    let currentImages = [];
+
+    // Open modal and load images
+    document.querySelectorAll('.view-album-btn').forEach(button => {
+        button.addEventListener('click', async () => {
+            const albumId = button.dataset.albumId;
+            // In a real implementation, you would fetch images from your backend
+            // For now, we'll just show the preview images
+            const albumCard = button.closest('.album-card');
+            const images = albumCard.querySelectorAll('.image-stack img');
+            currentImages = Array.from(images).map(img => ({
+                src: img.src,
+                caption: img.alt
+            }));
+            showImage(0);
+            modal.style.display = 'block';
+        });
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Navigate images
+    prevBtn.addEventListener('click', () => {
+        showImage(currentImageIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        showImage(currentImageIndex + 1);
+    });
+
+    function showImage(index) {
+        if (index < 0) index = currentImages.length - 1;
+        if (index >= currentImages.length) index = 0;
+        currentImageIndex = index;
+
+        modalContent.innerHTML = `
+            <img src="${currentImages[index].src}" alt="${currentImages[index].caption}">
+            <p class="image-caption">${currentImages[index].caption}</p>
+        `;
+
+        prevBtn.style.display = currentImages.length > 1 ? 'block' : 'none';
+        nextBtn.style.display = currentImages.length > 1 ? 'block' : 'none';
+    }
+});
+</script>
+{% endblock %}

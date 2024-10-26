@@ -1,0 +1,106 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title> Event Calendar </title>
+{{form.media}}
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}" type="text/css">
+<style>
+</style>
+{% endblock head %}
+
+{% block content %}
+<div class="calendar-container">
+    <div class="calendar-header">
+        <h1>School Calendar</h1>
+        <div class="calendar-filters">
+            <button class="filter-btn active" data-type="all">All Events</button>
+            <button class="filter-btn" data-type="academic">Academic</button>
+            <button class="filter-btn" data-type="sports">Sports</button>
+            <button class="filter-btn" data-type="cultural">Cultural</button>
+            <button class="filter-btn" data-type="other">Other</button>
+        </div>
+    </div>
+
+    <div class="calendar-view">
+        <!-- Calendar Grid -->
+        <div class="calendar-grid">
+            <div class="calendar-weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="calendar-days">
+                <!-- JS will populate this -->
+            </div>
+        </div>
+
+        <!-- Events List -->
+        <div class="events-list">
+            <h2>Upcoming Events</h2>
+            {% regroup events by start_date|date:"F j, Y" as events_by_date %}
+            
+            {% for date in events_by_date %}
+            <div class="event-date-group">
+                <h3>{{ date.grouper }}</h3>
+                {% for event in date.list %}
+                <div class="event-item" data-type="{{ event.event_type }}">
+                    <div class="event-time">{{ event.start_date|date:"g:i A" }}</div>
+                    <div class="event-content">
+                        <h4>{{ event.title }}</h4>
+                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</p>
+                        <p class="event-description">{{ event.description|truncatewords:30 }}</p>
+                        {% if event.registration_required %}
+                        <div class="event-registration">
+                            <span class="registration-badge">Registration Required</span>
+                            {% if event.max_participants %}
+                            <span class="capacity-badge">Capacity: {{ event.max_participants }}</span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const eventItems = document.querySelectorAll('.event-item');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            const filterType = button.dataset.type;
+            
+            eventItems.forEach(item => {
+                if (filterType === 'all' || item.dataset.type === filterType) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Calendar initialization code would go here
+    // This would handle populating the calendar grid and managing date selection
+});
+</script>
+{% endblock %}
